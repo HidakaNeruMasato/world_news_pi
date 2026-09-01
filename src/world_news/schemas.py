@@ -64,6 +64,7 @@ class Article(BaseModel):
     """収集記事モデル (DATABASE.md §3)"""
     id: Optional[int] = None
     source_id: int
+    source_country: Optional[str] = None
     external_id: Optional[str] = None
     title: str
     description: Optional[str] = None

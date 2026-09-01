@@ -2,9 +2,36 @@
 
 ## 1. Database
 
-Initial database: SQLite on Pi4.
+Initial database: SQLite on Pi4 (canonical runtime data store).
 
-SQLite is the canonical runtime data store.
+Pi3 also maintains a local SQLite database (`collector.db`) for persistent article queue management and feed health tracking.
+
+## 1.1 Pi3 collector_articles (Local Queue)
+
+- id INTEGER PRIMARY KEY AUTOINCREMENT
+- source_id INTEGER NOT NULL
+- source_country TEXT
+- external_id TEXT
+- title TEXT NOT NULL
+- description TEXT
+- url TEXT
+- published_at TEXT
+- fetched_at TEXT NOT NULL
+- language TEXT
+- content_hash TEXT
+- status TEXT NOT NULL DEFAULT 'pending' ('pending', 'sending', 'sent', 'failed')
+- retry_count INTEGER NOT NULL DEFAULT 0
+- next_retry_at TEXT
+- error_message TEXT
+- created_at TEXT NOT NULL
+- updated_at TEXT NOT NULL
+
+## 1.2 Pi3 feed_status
+
+- feed_id INTEGER PRIMARY KEY
+- last_success_at TEXT
+- last_failure_at TEXT
+- last_error TEXT
 
 ## 2. sources
 

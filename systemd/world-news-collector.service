@@ -10,6 +10,7 @@ ExecStart=%h/world_news/venv/bin/python -m world_news.collector
 Restart=on-failure
 RestartSec=10s
 Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=%h/world_news/src
 
 [Install]
 WantedBy=default.target

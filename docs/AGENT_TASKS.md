@@ -29,7 +29,7 @@ Create:
 - common schemas
 - PowerShell operation skeleton
 
-## T003 — Pi3 collector
+## T003 — Pi3 collector (Status: Completed)
 
 Implement feed registry, scheduler, parser, normalization, deduplication and retry queue.
 

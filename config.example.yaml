@@ -8,6 +8,9 @@ system:
 pi3:
   host: "worldnews-pi3"
   submit_url: "http://worldnews-pi4:8080/api/v1/internal/articles"
+  db_path: "collector.db"
+  delivery_max_retries: 5
+  delivery_initial_backoff_seconds: 5
 
 pi4:
   host: "worldnews-pi4"
@@ -28,3 +31,23 @@ geocoder:
 rss:
   default_interval_seconds: 300
   request_timeout_seconds: 20
+
+feeds:
+  - id: 1
+    name: "NHK News Top"
+    source_country: "JP"
+    language: "ja"
+    feed_url: "https://www.nhk.or.jp/rss/news/cat0.xml"
+    category: "general"
+    enabled: true
+    interval_seconds: 300
+    timeout_seconds: 20
+  - id: 2
+    name: "BBC News World"
+    source_country: "GB"
+    language: "en"
+    feed_url: "http://feeds.bbci.co.uk/news/world/rss.xml"
+    category: "general"
+    enabled: true
+    interval_seconds: 600
+    timeout_seconds: 20

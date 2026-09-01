@@ -1,7 +1,7 @@
 """設定ファイル (YAML) の読み込みおよび構造化モデル"""
 
 from pathlib import Path
-from typing import Union, Optional
+from typing import Union, Optional, List
 import yaml
 from pydantic import BaseModel, Field
 
@@ -17,6 +17,9 @@ class Pi3Config(BaseModel):
     """Pi3 (収集ノード) 設定"""
     host: str = "worldnews-pi3"
     submit_url: str = "http://worldnews-pi4:8080/api/v1/internal/articles"
+    db_path: str = "collector.db"
+    delivery_max_retries: int = 5
+    delivery_initial_backoff_seconds: int = 5
 
 
 class Pi4Config(BaseModel):
@@ -47,6 +50,19 @@ class RSSConfig(BaseModel):
     request_timeout_seconds: int = 20
 
 
+class FeedConfig(BaseModel):
+    """個別RSS/Atomフィード設定"""
+    id: int
+    name: str
+    source_country: str = "XX"
+    language: str = "en"
+    feed_url: str
+    category: Optional[str] = "general"
+    enabled: bool = True
+    interval_seconds: int = 300
+    timeout_seconds: int = 20
+
+
 class AppConfig(BaseModel):
     """アプリケーション統合設定"""
     system: SystemConfig = Field(default_factory=SystemConfig)
@@ -55,6 +71,7 @@ class AppConfig(BaseModel):
     llm: LLMConfig = Field(default_factory=LLMConfig)
     geocoder: GeocoderConfig = Field(default_factory=GeocoderConfig)
     rss: RSSConfig = Field(default_factory=RSSConfig)
+    feeds: List[FeedConfig] = Field(default_factory=list)
 
 
 def load_config(config_path: Union[str, Path] = "config.yaml") -> AppConfig:
