@@ -1,0 +1,13 @@
+[Unit]
+Description=World News Event Map - Pi4 LLM Server Service (Placeholder)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/world_news
+ExecStart=/bin/echo "llama-server placeholder service (T005で実設定を行います)"
+Restart=no
+
+[Install]
+WantedBy=default.target

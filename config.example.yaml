@@ -1,0 +1,30 @@
+# Copy to a local, untracked configuration file before use.
+
+system:
+  timezone: "Asia/Tokyo"
+  event_lifetime_hours: 6
+  min_display_confidence: 0.75
+
+pi3:
+  host: "worldnews-pi3"
+  submit_url: "http://worldnews-pi4:8080/api/v1/internal/articles"
+
+pi4:
+  host: "worldnews-pi4"
+  api_port: 8080
+
+llm:
+  provider: "llama_cpp"
+  model_id: "REPLACE_AFTER_BENCHMARK"
+  prompt_version: "v1"
+  temperature: 0.0
+  max_input_chars: 8000
+  max_output_tokens: 512
+
+geocoder:
+  provider: "REPLACE_AFTER_PROVIDER_SELECTION"
+  enabled: true
+
+rss:
+  default_interval_seconds: 300
+  request_timeout_seconds: 20

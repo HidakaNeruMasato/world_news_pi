@@ -1,0 +1,15 @@
+[Unit]
+Description=World News Event Map - Pi3 Feed Collector Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/world_news
+ExecStart=%h/world_news/venv/bin/python -m world_news.collector
+Restart=on-failure
+RestartSec=10s
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
