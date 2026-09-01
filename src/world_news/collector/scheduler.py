@@ -24,12 +24,12 @@ class CollectorScheduler:
     ):
         self.config = config or load_config()
         self.registry = FeedRegistry.from_config(self.config)
-        self.fetcher = FeedFetcher(timeout=self.config.rss.request_timeout_seconds)
+        self.fetcher = FeedFetcher(timeout=10)
         self.parser = FeedParser()
         self.normalizer = ArticleNormalizer()
         self.queue = queue or CollectorQueue(db_path=self.config.pi3.db_path)
         self.delivery_client = delivery_client or Pi4DeliveryClient(
-            submit_url=self.config.pi3.submit_url
+            submit_url=self.config.pi4.api_url
         )
         self.logger = logging.getLogger("world_news.collector")
 
@@ -98,8 +98,8 @@ class CollectorScheduler:
             self.queue.mark_failed(
                 article_id=article_id,
                 error_message=error_msg,
-                max_retries=self.config.pi3.delivery_max_retries,
-                initial_backoff_seconds=self.config.pi3.delivery_initial_backoff_seconds,
+                max_retries=self.config.pi3.max_retries,
+                initial_backoff_seconds=self.config.pi3.retry_base_delay_seconds,
             )
             self.logger.warning(f"Failed to deliver article {article_id} to Pi4: {error_msg} (retained as pending/retry).")
 

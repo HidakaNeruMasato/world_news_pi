@@ -1,123 +1,30 @@
-# ARCHITECTURE.md
+# ARCHITECTURE.md — システムアーキテクチャ
 
-## 1. Physical architecture
+## 1. ノード分割と役割
 
-Internet
-  -> RSS providers
-  -> Pi 3 collector
-  -> Pi 4 analyzer/database/API
-  -> clients
+```text
+┌──────────────────────────────────────┐     ┌──────────────────────────────────────┐
+│  worldnews-pi3 (Raspberry Pi 3 B+)   │     │  worldnews-pi4 (Raspberry Pi 4 4GB)  │
+│  - RSS / Atom 取得                   │     │  - REST API (FastAPI / Uvicorn)      │
+│  - 正規化 & 重複排除                 │ ──► │  - SQLite カノニカル DB (worldnews.db)│
+│  - ローカル永続キュー (collector.db)  │ HTTP│  - 原子的 Transaction (Articles/Jobs) │
+│  - At-Least-Once / ACK 配送管理      │ POST│  - LLM 解析ジョブ管理 (T006予定)     │
+└──────────────────────────────────────┘     └──────────────────────────────────────┘
+```
 
-Windows PC
-  -> Git
-  -> SSH
-  -> deployment/operations
+## 2. データ配送フローとトランザクション保証 (Pi3 ➔ Pi4)
 
-## 2. Node responsibilities
+1. **Pi3 Collector**: RSS/Atom から記事を取得・正規化し、SQLite (`collector.db`) に `status='pending'` で保存。
+2. **HTTP 送信**: Pi3 は Pi4 REST API (`POST /api/v1/internal/articles`) へ記事ペイロードを送信。
+3. **Pi4 原子的トランザクション**:
+   - `external_id`, `url`, `content_hash` による重複チェック。
+   - 重複時: DB 書き込みスキップ ➔ `200 OK` (ACK: `already_exists`)。
+   - 新規時: SQLite トランザクション (`BEGIN IMMEDIATE`) 内で `articles` への INSERT と `processing_jobs` (`job_type='llm_analysis'`, `status='pending'`) への INSERT を同時実行 ➔ `COMMIT` ➔ `201 Created` (ACK: `created`)。
+4. **Pi3 ACK 処理**:
+   - HTTP 200/201 (ACK) を受領した記事のみ SQLite ステータスを `sent` に変更。
+   - Pi4 停止またはエラー時は `pending` のまま安全に保持し、指数バックオフで再送試行。
 
-### worldnews-pi3
+## 3. 国情報の分離原則
 
-MUST provide:
-
-- feed scheduler
-- RSS/Atom fetcher
-- feed parser
-- normalization
-- URL/GUID/hash deduplication
-- outbound submission to Pi 4
-- retry queue
-
-SHOULD avoid:
-
-- LLM inference
-- public API serving
-- long-term canonical event storage
-
-### worldnews-pi4
-
-MUST provide:
-
-- article intake
-- processing queue
-- local LLM inference
-- JSON schema validation
-- event normalization
-- geocoding orchestration
-- event merge/expiration
-- SQLite database
-- REST API
-- health endpoints
-
-### Windows PC
-
-MUST provide:
-
-- source repository
-- AI-agent workspace
-- deployment scripts
-- test execution
-- SSH access
-- backup destination
-
-The runtime MUST continue if the PC is powered off.
-
-## 3. Data flow
-
-RSS
- -> collector
- -> normalized article
- -> Pi4 intake
- -> pending job
- -> pre-filter
- -> LLM
- -> schema validation
- -> location resolver
- -> event matching
- -> event upsert
- -> API
- -> client
-
-## 4. Failure isolation
-
-Pi3 offline:
-Pi4 continues serving existing events.
-
-Pi4 offline:
-Pi3 queues articles for later submission.
-
-PC offline:
-runtime continues.
-
-Geocoder unavailable:
-article remains stored with unresolved location status.
-
-LLM unavailable:
-articles remain pending/retryable.
-
-## 5. Technology baseline
-
-Pi 3 / Pi 4:
-Raspberry Pi OS 64-bit.
-
-Backend:
-Python 3.x.
-
-Database:
-SQLite for initial deployment.
-
-LLM runtime:
-llama.cpp-compatible runtime.
-
-API:
-FastAPI candidate.
-
-Web prototype:
-HTML/CSS/JavaScript + Leaflet candidate.
-
-Mobile:
-Flutter candidate.
-
-Deployment:
-systemd + SSH + PowerShell scripts.
-
-The exact versions MUST be pinned during implementation after environment inspection.
+- **`source_country`**: RSS ニュース発行元の国コード (例: JP, GB, US)。Pi3 および Pi4 `articles.source_country` で一貫保持。
+- **`event_country`**: ニュース記事が対象とする「事件・発生国」。LLM 解析フェーズ (T006) で抽出される別フィールドであり、絶対に `source_country` と同一扱いしません。

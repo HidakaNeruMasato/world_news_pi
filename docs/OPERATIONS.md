@@ -1,87 +1,49 @@
-# OPERATIONS.md
+# OPERATIONS.md — 運用および運用制御手順書
 
-## 1. Standard operations
+## 1. PowerShell オペレーションスクリプト (`scripts/ops.ps1`)
 
-Use repository scripts whenever possible.
+開発機 (Windows) から以下のコマンドを実行して運用操作を行います:
 
-Commands:
+- **全ユニットテスト実行**:
+  ```powershell
+  .\scripts\ops.ps1 -Action test
+  ```
+- **Pi3 への配備**:
+  ```powershell
+  .\scripts\ops.ps1 -Action deploy-pi3
+  ```
+- **Pi4 への配備**:
+  ```powershell
+  .\scripts\ops.ps1 -Action deploy-pi4
+  ```
+- **システムログ確認**:
+  ```powershell
+  .\scripts\ops.ps1 -Action logs
+  ```
 
-- status
-- health
-- logs
-- deploy-pi3
-- deploy-pi4
-- restart-pi3
-- restart-pi4
-- backup
-- test
+---
 
-## 2. Service names
+## 2. Pi4 API サービスの管理 (SSH 経由)
 
-Pi3:
+Pi4 (`worldnews-pi4`) 上の一般ユーザーサービス管理:
 
-`world-news-collector.service`
-
-Pi4:
-
-`world-news-analyzer.service`
-`world-news-api.service`
-`llama-server.service`
-
-Exact names may be changed during implementation but MUST then be documented.
-
-## 3. Health checks
-
-Pi3:
-
-- service active
-- last feed success
-- queue size
-- disk usage
-- CPU temperature
-
-Pi4:
-
-- API response
-- database health
-- analyzer process
-- LLM process
-- pending jobs
-- failed jobs
-- RAM/disk/temperature
-
-## 4. Logs
-
-Use journald/systemd logs.
-
-Application logs SHOULD be structured enough for automated diagnosis.
-
-## 5. Backup
-
-Back up SQLite database to the Windows PC or other storage.
-
-A backup MUST NOT overwrite the only previous backup.
-
-## 6. Recovery
-
-After reboot:
-
-- services start automatically
-- queue resumes
-- database opens
-- active event expiration works
-- failed jobs remain retryable
-
-## 7. Monitoring thresholds
-
-Thresholds are configuration, not hard-coded assumptions.
-
-At minimum monitor:
-
-- disk free space
-- RAM
-- CPU temperature
-- queue backlog
-- feed failure count
-- LLM error rate
-- API availability
+- **起動**:
+  ```bash
+  ssh worldnews-pi4 "systemctl --user start world-news-api.service"
+  ```
+- **停止**:
+  ```bash
+  ssh worldnews-pi4 "systemctl --user stop world-news-api.service"
+  ```
+- **再起動**:
+  ```bash
+  ssh worldnews-pi4 "systemctl --user restart world-news-api.service"
+  ```
+- **ステータス確認**:
+  ```bash
+  ssh worldnews-pi4 "systemctl --user status world-news-api.service --no-pager"
+  ```
+- **ヘルスチェック (curl)**:
+  ```bash
+  ssh worldnews-pi4 "curl -s http://localhost:8080/api/v1/health"
+  ```
