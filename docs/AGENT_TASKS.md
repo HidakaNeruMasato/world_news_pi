@@ -37,7 +37,7 @@ Implement feed registry, scheduler, parser, normalization, deduplication and ret
 
 Implement SQLite schema, migrations/init, internal article intake and health endpoint.
 
-## T005 — LLM benchmark
+## T005 — LLM benchmark (Status: Completed)
 
 Benchmark a small set of suitable quantized models on Pi4.
 

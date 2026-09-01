@@ -7,6 +7,18 @@ import yaml
 from pydantic import BaseModel, Field
 
 
+class SystemConfig(BaseModel):
+    timezone: str = "Asia/Tokyo"
+    event_lifetime_hours: int = 6
+    min_display_confidence: float = 0.5
+
+
+class LLMConfig(BaseModel):
+    model_id: str = "default"
+    temperature: float = 0.1
+    max_tokens: int = 256
+
+
 class FeedConfig(BaseModel):
     id: int
     name: str
@@ -20,6 +32,7 @@ class FeedConfig(BaseModel):
 
 
 class Pi3Config(BaseModel):
+    host: Optional[str] = None
     db_path: str = "collector.db"
     poll_interval_seconds: int = 300
     max_retries: int = 5
@@ -27,6 +40,7 @@ class Pi3Config(BaseModel):
 
 
 class Pi4Config(BaseModel):
+    host: Optional[str] = None
     db_path: str = "worldnews.db"
     api_host: str = "0.0.0.0"
     api_port: int = 8080
@@ -39,6 +53,8 @@ class NodeConfig(BaseModel):
 
 class AppConfig(BaseModel):
     node: NodeConfig = Field(default_factory=NodeConfig)
+    system: SystemConfig = Field(default_factory=SystemConfig)
+    llm: LLMConfig = Field(default_factory=LLMConfig)
     pi3: Pi3Config = Field(default_factory=Pi3Config)
     pi4: Pi4Config = Field(default_factory=Pi4Config)
     feeds: List[FeedConfig] = Field(default_factory=list)
@@ -47,7 +63,6 @@ class AppConfig(BaseModel):
 def load_config(config_path: Optional[str] = None) -> AppConfig:
     """設定 YAML ファイルを読み込み AppConfig オブジェクトを返します"""
     if config_path is None:
-        # デフォルト探索パス
         candidates = [
             Path("config.yaml"),
             Path("config.example.yaml"),
