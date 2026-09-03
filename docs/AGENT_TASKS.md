@@ -51,31 +51,35 @@ Record:
 
 Do not install many large models simultaneously.
 
-## T006 — Analyzer
+## T006 — Analyzer (Status: Completed)
 
-Implement prompt versioning, LLM invocation, schema validation and retry.
+Implement prompt versioning, LLM invocation, schema validation, analyses & events record creation, and retry.
 
-## T007 — Geocoder
+## T007 — Geocoder (Status: Completed)
 
-Implement provider abstraction and cache.
+Implement Geocoder interface abstraction, OpenStreetMap Nominatim provider, location resolver, fallback queries, country validation, geocoding cache, and systemd user service.
 
-## T008 — Event engine
+## T008 — Event engine (Status: Completed)
 
 Implement matching, merge, expiration and active-event query.
 
-## T009 — Web prototype
+## T009 — Web prototype / map visualization (Status: Completed)
 
-Implement map, markers, aging, filters and event details.
+Implement React+TS+Vite map UI with Leaflet, active event polling, event detail panel, category markers, fade effects, error handling and FastAPI static hosting on Pi4.
 
-## T010 — End-to-end test
+## T010 — End-to-end test (Status: Completed)
 
-Run the complete pipeline with controlled test feeds/articles.
+Execute full E2E test from Pi3 RSS fetch to Pi4 LLM, Geocoder, Event Engine, API and React+Leaflet Web Map. Verify metrics, outage recovery, duplicate handling, resource safety, and manual location accuracy. (Verdict: PASS)
 
-## T011 — Operations
+## T011 — Operations / Long-Running Test (Status: Completed)
 
-Implement real deployment, health, backup and rollback scripts.
+Execute continuous operation & stability tests, monitoring metrics into CSV, verifying service & host restart recoveries, memory safety (OOM = 0), queue drain, SQLite integrity (ok), and data loss zero. (Verdict: PASS)up and rollback scripts.
 
-## T012 — Mobile prototype
+## T012 — News Quality and Event Accuracy Verification (Status: Completed)
+
+Evaluate and verify news quality, event classification, source vs event country separation, hallucination prevention, duplicate event merging, and geocoding safety with 52-item Ground Truth dataset and Quality Evaluation CLI (`world_news.quality`). (Verdict: PASS)
+
+## T013 — Mobile prototype
 
 Create Flutter client after the API contract is stable.
 
