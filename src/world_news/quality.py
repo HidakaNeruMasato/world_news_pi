@@ -312,11 +312,14 @@ class RealWorldEvaluator:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="World News Quality Evaluation CLI (T012/T013)")
+    parser = argparse.ArgumentParser(description="World News Quality Evaluation CLI (T012/T013/T014)")
     parser.add_argument("--gt-path", type=str, default="tests/data/t012_ground_truth.json", help="Path to ground truth JSON file")
     parser.add_argument("--review-path", type=str, default="docs/t013/review.json", help="Path to T013 real-world review JSON file")
+    parser.add_argument("--t014-path", type=str, default="docs/t014/experiments.json", help="Path to T014 experiments JSON file")
     parser.add_argument("--summary", action="store_true", help="Print quality summary metrics for Ground Truth")
     parser.add_argument("--real-world-summary", action="store_true", help="Print real-world quality summary for T013")
+    parser.add_argument("--t014-summary", action="store_true", help="Print T014 evaluation summary")
+    parser.add_argument("--compare-t013-t014", action="store_true", help="Compare T013 Baseline vs T014 Candidate metrics")
     parser.add_argument("--events", action="store_true", help="Show all event classification details")
     parser.add_argument("--false-positive", action="store_true", help="Show false positive items")
     parser.add_argument("--unresolved", action="store_true", help="Show unresolved location items")
@@ -325,6 +328,46 @@ def main():
     parser.add_argument("--categories", action="store_true", help="Show category distribution")
 
     args = parser.parse_args()
+
+    if args.compare_t013_t014 or args.t014_summary:
+        exp_file = Path(args.t014_path)
+        if exp_file.exists():
+            with open(exp_file, "r", encoding="utf-8") as f:
+                exps = json.load(f)
+            exp_a = exps[0]
+            exp_d = exps[-1]
+
+            if args.compare_t013_t014:
+                print("T013 -> T014 Real-World Quality Comparison")
+                print("===========================================")
+                print(f"\nArticles: {exp_a['articles']} -> {exp_d['articles']}")
+                print(f"\nEvent Precision: {exp_a['precision']}% -> {exp_d['precision']}%")
+                print(f"Event Recall: {exp_a['recall']}% -> {exp_d['recall']}%")
+                print(f"F1 Score: {exp_a['f1']}% -> {exp_d['f1']}%")
+                print(f"\nCountry Accuracy: {exp_a['country_accuracy']}% -> {exp_d['country_accuracy']}%")
+                print(f"Location Accuracy: {exp_a['location_accuracy']}% -> {exp_d['location_accuracy']}%")
+                print(f"\nMap Precision: {exp_a['map_precision']}% -> {exp_d['map_precision']}%")
+                print(f"Map Recall: {exp_a['map_recall']}% -> {exp_d['map_recall']}%")
+                print(f"\nFalse Merge: {exp_a['false_merges']} -> {exp_d['false_merges']}")
+                print(f"Missed Merge: {exp_a['missed_merges']} -> {exp_d['missed_merges']}")
+                print(f"Critical Errors: {exp_a['critical_errors']} -> {exp_d['critical_errors']}")
+                print()
+                return
+
+            if args.t014_summary:
+                print("T014 Quality Summary (Experiment D - Best Candidate)")
+                print("====================================================")
+                print(f"Articles: {exp_d['articles']}")
+                print(f"Precision: {exp_d['precision']}%")
+                print(f"Recall: {exp_d['recall']}%")
+                print(f"F1 Score: {exp_d['f1']}%")
+                print(f"Map Precision: {exp_d['map_precision']}%")
+                print(f"Map Recall: {exp_d['map_recall']}%")
+                print(f"Country Accuracy: {exp_d['country_accuracy']}%")
+                print(f"Location Accuracy: {exp_d['location_accuracy']}%")
+                print(f"Critical Errors: {exp_d['critical_errors']}")
+                print()
+                return
 
     if args.real_world_summary:
         rw_evaluator = RealWorldEvaluator(Path(args.review_path))

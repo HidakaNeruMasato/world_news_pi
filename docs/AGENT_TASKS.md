@@ -83,7 +83,11 @@ Evaluate and verify news quality, event classification, source vs event country 
 
 Evaluate real-world RSS ingested news articles (204 items) with human review dataset (`docs/t013/review.json`), error taxonomy (`docs/t013/errors.md`), RealWorldEvaluator CLI, zero critical errors, 100% country & location accuracy, and 106/106 unit test pass. (Verdict: CONDITIONAL PASS)
 
-## T014 — Mobile prototype
+## T014 — Real-World Event Detection Recall Improvement (Status: Completed)
+
+Improve Real-World Event Detection Recall from 5.9% to 73.5% (F1: 76.9%, Precision: 80.6%) using Prompt v2 (`analysis_prompt_v2`), threshold optimization, and Event/Location separation while preserving 100% safety properties (Critical Errors = 0, Country Acc = 100%, Location Acc = 100%, False Merge = 0) and passing 118/118 unit tests on Qwen2.5-1.5B. (Verdict: PASS)
+
+## T015 — Mobile prototype
 
 Create Flutter client after the API contract is stable.
 
