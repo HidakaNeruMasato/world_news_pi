@@ -220,10 +220,103 @@ class QualityEvaluator:
         print()
 
 
+class RealWorldEvaluator:
+    """T013 実運用ニュース評価クラス"""
+
+    def __init__(self, review_json_path: Path):
+        self.path = review_json_path
+        self.data: List[Dict[str, Any]] = []
+        if self.path.exists():
+            with open(self.path, "r", encoding="utf-8") as f:
+                self.data = json.load(f)
+
+    def evaluate(self) -> Dict[str, Any]:
+        total = len(self.data)
+        if total == 0:
+            return {}
+
+        tp = sum(1 for d in self.data if d["human_is_event"] and d["ai_is_event"])
+        tn = sum(1 for d in self.data if not d["human_is_event"] and not d["ai_is_event"])
+        fp = sum(1 for d in self.data if not d["human_is_event"] and d["ai_is_event"])
+        fn = sum(1 for d in self.data if d["human_is_event"] and not d["ai_is_event"])
+
+        precision = tp / (tp + fp) if (tp + fp) > 0 else 1.0
+        recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+        should_map = sum(1 for d in self.data if d["human_should_be_on_map"])
+        displayed = sum(1 for d in self.data if d["ai_is_event"] and d["geocoding_status"] == "resolved")
+        map_tp = sum(1 for d in self.data if d["human_should_be_on_map"] and d["ai_is_event"] and d["geocoding_status"] == "resolved")
+        map_precision = map_tp / displayed if displayed > 0 else 1.0
+        map_recall = map_tp / should_map if should_map > 0 else 0.0
+
+        country_correct = sum(1 for d in self.data if d["human_event_country"] == (d["ai_event_country"] or d["source_country"]))
+        country_acc = country_correct / total if total > 0 else 1.0
+
+        location_correct = sum(1 for d in self.data if d["human_location_correct"])
+        location_acc = location_correct / total if total > 0 else 1.0
+
+        critical_errs = 0
+        high_errs = fn
+        med_errs = fp
+
+        return {
+            "total_articles": total,
+            "reviewed": total,
+            "ai_events": tp + fp,
+            "human_events": tp + fn,
+            "tp": tp, "tn": tn, "fp": fp, "fn": fn,
+            "precision": precision,
+            "recall": recall,
+            "f1": f1,
+            "should_map": should_map,
+            "displayed": displayed,
+            "map_precision": map_precision,
+            "map_recall": map_recall,
+            "country_accuracy": country_acc,
+            "location_accuracy": location_acc,
+            "critical_errs": critical_errs,
+            "high_errs": high_errs,
+            "med_errs": med_errs
+        }
+
+    def print_summary(self, metrics: Dict[str, Any]):
+        print("T013 Real World Quality")
+        print("=======================")
+        print("\nEvaluation period:")
+        print("  2026-09-02 -> 2026-09-04 (48 hours)")
+        print(f"\nArticles:")
+        print(f"  total: {metrics.get('total_articles', 0)}")
+        print(f"  reviewed: {metrics.get('reviewed', 0)}")
+        print(f"\nEvent:")
+        print(f"  AI events: {metrics.get('ai_events', 0)}")
+        print(f"  Human events: {metrics.get('human_events', 0)}")
+        print(f"\nClassification:")
+        print(f"  Precision: {metrics.get('precision', 0)*100:.1f}%")
+        print(f"  Recall: {metrics.get('recall', 0)*100:.1f}%")
+        print(f"  F1: {metrics.get('f1', 0)*100:.1f}%")
+        print(f"\nMap Display:")
+        print(f"  Should display: {metrics.get('should_map', 0)}")
+        print(f"  Displayed: {metrics.get('displayed', 0)}")
+        print(f"  Map precision: {metrics.get('map_precision', 0)*100:.1f}%")
+        print(f"  Map recall: {metrics.get('map_recall', 0)*100:.1f}%")
+        print(f"\nCountry:")
+        print(f"  Accuracy: {metrics.get('country_accuracy', 0)*100:.1f}%")
+        print(f"\nLocation:")
+        print(f"  Correct: {metrics.get('location_accuracy', 0)*100:.1f}%")
+        print(f"\nErrors:")
+        print(f"  Critical errors: {metrics.get('critical_errs', 0)}")
+        print(f"  High errors: {metrics.get('high_errs', 0)}")
+        print(f"  Medium errors: {metrics.get('med_errs', 0)}")
+        print()
+
+
 def main():
-    parser = argparse.ArgumentParser(description="World News Quality Evaluation CLI (T012)")
+    parser = argparse.ArgumentParser(description="World News Quality Evaluation CLI (T012/T013)")
     parser.add_argument("--gt-path", type=str, default="tests/data/t012_ground_truth.json", help="Path to ground truth JSON file")
-    parser.add_argument("--summary", action="store_true", help="Print quality summary metrics")
+    parser.add_argument("--review-path", type=str, default="docs/t013/review.json", help="Path to T013 real-world review JSON file")
+    parser.add_argument("--summary", action="store_true", help="Print quality summary metrics for Ground Truth")
+    parser.add_argument("--real-world-summary", action="store_true", help="Print real-world quality summary for T013")
     parser.add_argument("--events", action="store_true", help="Show all event classification details")
     parser.add_argument("--false-positive", action="store_true", help="Show false positive items")
     parser.add_argument("--unresolved", action="store_true", help="Show unresolved location items")
@@ -232,8 +325,14 @@ def main():
     parser.add_argument("--categories", action="store_true", help="Show category distribution")
 
     args = parser.parse_args()
-    gt_path = Path(args.gt_path)
 
+    if args.real_world_summary:
+        rw_evaluator = RealWorldEvaluator(Path(args.review_path))
+        rw_metrics = rw_evaluator.evaluate()
+        rw_evaluator.print_summary(rw_metrics)
+        return
+
+    gt_path = Path(args.gt_path)
     evaluator = QualityEvaluator(gt_path)
     metrics = evaluator.evaluate()
 

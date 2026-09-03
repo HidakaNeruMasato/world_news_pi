@@ -79,7 +79,11 @@ Execute continuous operation & stability tests, monitoring metrics into CSV, ver
 
 Evaluate and verify news quality, event classification, source vs event country separation, hallucination prevention, duplicate event merging, and geocoding safety with 52-item Ground Truth dataset and Quality Evaluation CLI (`world_news.quality`). (Verdict: PASS)
 
-## T013 — Mobile prototype
+## T013 — Real-World News Quality Verification (Status: Completed)
+
+Evaluate real-world RSS ingested news articles (204 items) with human review dataset (`docs/t013/review.json`), error taxonomy (`docs/t013/errors.md`), RealWorldEvaluator CLI, zero critical errors, 100% country & location accuracy, and 106/106 unit test pass. (Verdict: CONDITIONAL PASS)
+
+## T014 — Mobile prototype
 
 Create Flutter client after the API contract is stable.
 

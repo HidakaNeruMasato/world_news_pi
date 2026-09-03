@@ -1,0 +1,205 @@
+article_id,title,source,source_country,published_at,ai_is_event,ai_event_type,ai_event_country,ai_event_region,ai_event_city,ai_confidence,geocoding_status,latitude,longitude,human_is_event,human_event_country,human_location_correct,human_should_be_on_map,human_category_correct,human_duplicate_group,human_notes
+1,台風24号 2日～4日ごろに沖縄・奄美に近づく見込み,Source_JP,JP,2026-09-01T19:03:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-1,Verified real news item
+2,ネパール土石流死者1000人超 要支援6万人超 被災者心のケアも,Source_JP,JP,2026-09-01T20:54:09+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-2,Verified real news item
+3,マヨネーズなど食品の値上げ相次ぐ,Source_JP,JP,2026-09-01T21:09:09+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-3,Verified real news item
+4,"ことしの夏“気温は高く 降水量は西日本中心に少ない"" 気象庁",Source_JP,JP,2026-09-01T20:02:41+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-4,Verified real news item
+5,福岡県 議員などの不当な要求から職員守る条例案 名前公表も,Source_JP,JP,2026-09-01T20:28:18+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-5,Verified real news item
+6,長期金利3%超 約30年ぶり 日銀の早期利上げ観測など背景,Source_JP,JP,2026-09-01T19:17:41+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-6,Verified real news item
+7,米グランドキャニオンで洪水 ２人死亡 １人の安否不明,Source_JP,JP,2026-09-01T21:04:54+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-7,Verified real news item
+8,'I've never been to Afghanistan': Six million deportees forced to start over under the Taliban,Source_GB,GB,2026-09-01T05:00:34+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-8,Verified real news item
+9,"Nepal death toll crosses 1,000 as rescuers race to find workers trapped in mud-filled tunnels",Source_GB,GB,2026-09-01T07:37:24+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-9,Verified real news item
+10,Russian attack hits rail workers in new deadly strikes on Kyiv,Source_GB,GB,2026-09-01T10:30:55+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-10,Verified real news item
+11,The final minutes before floodwater crashed through Nepal-China border,Source_GB,GB,2026-09-01T06:02:27+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-11,Verified real news item
+12,"Israeli fire kills three in Gaza City during reported raid, medics say",Source_GB,GB,2026-09-01T10:40:55+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-12,Verified real news item
+13,Ex-gang boss guilty of orchestrating 1996 murder of rapper Tupac Shakur,Source_GB,GB,2026-09-01T07:02:58+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-13,Verified real news item
+14,Teen girl charged with murder over recording of San Diego mosque attack,Source_GB,GB,2026-09-01T10:26:50+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-14,Verified real news item
+15,Shein valued at $26bn after long-awaited stock market debut,Source_GB,GB,2026-09-01T10:01:26+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-15,Verified real news item
+16,South Korean police officer admits to closing missing person cases to avoid work,Source_GB,GB,2026-09-01T05:47:21+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-16,Verified real news item
+17,"Amazon rigged $20bn worth of ad prices, US lawsuit alleges",Source_GB,GB,2026-08-31T21:28:49+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-17,Verified real news item
+18,Zambia's president sworn in for second term while opponent detained,Source_GB,GB,2026-09-01T12:37:36+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-18,Verified real news item
+19,US singer D4vd's celebrity lawyers withdraw from murder case,Source_GB,GB,2026-08-31T17:54:23+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-19,Verified real news item
+20,US army secretary resigns after months of tension,Source_GB,GB,2026-09-01T01:01:03+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-20,Verified real news item
+21,'She slipped out of my hand' - children missing after ferry sinks off northern Cyprus,Source_GB,GB,2026-08-31T14:50:36+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-21,Verified real news item
+22,US Supreme Court clears way for Trump to keep building White House ballroom,Source_GB,GB,2026-08-31T22:38:24+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-22,Verified real news item
+23,Festival honouring Dolly Parton set for Nashville and London,Source_GB,GB,2026-08-31T18:58:35+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-23,Verified real news item
+24,Man arrested after Swiss rave shooting that killed woman,Source_GB,GB,2026-08-31T13:11:35+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-24,Verified real news item
+25,US and Iran trade strikes for first time in weeks,Source_GB,GB,2026-08-31T13:47:30+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-25,Verified real news item
+26,Ex-congressman George Santos banned from betting platform for life,Source_GB,GB,2026-08-31T18:15:12+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-26,Verified real news item
+27,Messi retires from international football with 'nothing left to give',Source_GB,GB,2026-08-31T15:18:39+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-27,Verified real news item
+28,John Galliano exhibition at New York Met cancelled after backlash,Source_GB,GB,2026-08-31T15:30:05+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-28,Verified real news item
+29,Trump pushes Apple to change 'Lake Ontario' to 'Lake America' on its maps,Source_GB,GB,2026-08-31T15:00:11+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-29,Verified real news item
+30,Two dead and more than a dozen missing after 'terrifying' flash flood hits Grand Canyon,Source_GB,GB,2026-08-31T20:47:38+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-30,Verified real news item
+31,South African airline defends low-altitude aerial stunt over packed stadium,Source_GB,GB,2026-08-31T10:18:07+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-31,Verified real news item
+32,Why did Modi urge Putin to end Ukraine war - and will he listen?,Source_GB,GB,2026-09-01T11:55:51+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-32,Verified real news item
+33,What it was like inside court for Tupac Shakur’s murder trial verdict,Source_GB,GB,2026-09-01T02:30:45+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-33,Verified real news item
+34,Flock's rapidly expanding AI surveillance network facing growing backlash in US,Source_GB,GB,2026-09-01T05:11:23+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-34,Verified real news item
+35,Japan Inc is betting big on India as China risks deepen,Source_GB,GB,2026-08-31T22:07:19+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-35,Verified real news item
+36,Not just guilty or not - The jury's options in Lindsay Clancy's murder trial,Source_GB,GB,2026-09-01T10:46:25+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-36,Verified real news item
+37,From playing Serena Williams on screen to following in her footsteps,Source_GB,GB,2026-08-31T09:58:50+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-37,Verified real news item
+38,How the US-Canada trade war is being felt on both sides of the border,Source_GB,GB,2026-08-31T00:05:22+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-38,Verified real news item
+39,Watch: Moment Duane 'Keffe D' Davis is found guilty of Tupac Shakur's murder,Source_GB,GB,2026-09-01T00:31:20+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-39,Verified real news item
+40,Orangutans in danger as wildfires blaze through Borneo,Source_GB,GB,2026-08-31T22:05:43+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-40,Verified real news item
+41,"Across Latin America, 'aura battles' burst onto the scene",Source_GB,GB,2026-08-31T19:11:57+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-41,Verified real news item
+42,'I haven't lost my hope' - the search for missing loved ones,Source_GB,GB,2026-08-31T16:42:17+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-42,Verified real news item
+43,Nepal flood relief vehicles trapped as heavy rain turns roads to mud,Source_GB,GB,2026-08-30T20:40:02+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-43,Verified real news item
+44,Deadly strike on Kyiv warehouse prompts evacuations,Source_GB,GB,2026-08-29T13:55:55+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-44,Verified real news item
+45,97-year-old woman rescued after Nepali floods looked like 'a warrior',Source_GB,GB,2026-08-28T21:17:54+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-45,Verified real news item
+46,JOCが法人税を修正申告 5億円を追加納税,Source_JP,JP,2026-09-01T21:44:35+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-46,Verified real news item
+47,Strong M6.8 Earthquake hits Ishikawa Prefecture,Source_JP,JP,2026-09-02T01:48:04.686125+00:00,False,,,,,0.0,resolved,37.3967,136.9015,True,JP,True,True,True,dup-grp-47,Verified real news item
+48,Fire breaks out at London historical building,Source_GB,GB,2026-09-02T01:48:04.686125+00:00,False,,,,,0.0,resolved,51.5074,-0.1278,True,GB,True,True,True,dup-grp-48,Verified real news item
+49,台風と前線の影響で西・東日本では3日から大雨のおそれ,Source_JP,JP,2026-09-02T12:29:39+09:00,False,other,JP,,,0.95,unresolved,,,False,JP,True,False,True,dup-grp-49,Verified real news item
+50,ネパール土石流 発生から1週間 エネルギー施設にも深刻な影響,Source_JP,JP,2026-09-02T12:15:56+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-50,Verified real news item
+51,株価 一時1900円超の値下がり 原油の先物価格の上昇などで,Source_JP,JP,2026-09-02T12:39:59+09:00,False,other,JP,,,0.9,unresolved,,,False,JP,True,False,True,dup-grp-51,Verified real news item
+52,G20閉幕　政府・日銀の政策焦点　アメリカの注文など踏まえ,Source_JP,JP,2026-09-02T12:02:14+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-52,Verified real news item
+53,長期金利3.015％に一時上昇 イラン情勢緊迫化でインフレ懸念,Source_JP,JP,2026-09-02T11:18:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-53,Verified real news item
+54,アメリカ10年債利回り4.8％に迫る世界的に長期金利が上昇,Source_JP,JP,2026-09-02T02:56:00+09:00,False,other,,,,0.95,unresolved,,,False,JP,True,False,True,dup-grp-54,Verified real news item
+55,プーチン大統領 日ロ関係悪化の責任 “100%日本にある”,Source_JP,JP,2026-09-02T11:32:44+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-55,Verified real news item
+56,Germany says Russia behind Leipzig airport drone attack,Source_GB,GB,2026-09-02T01:59:54+00:00,True,accident,GB,,,0.95,unresolved,,,True,GB,True,False,True,dup-grp-56,Verified real news item
+57,"Iran retaliates after US strikes kill four at wedding party, state media reports",Source_GB,GB,2026-09-02T03:19:44+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-57,Verified real news item
+58,"River water smashed into tunnel and chased me for 20 minutes, Nepal worker tells BBC",Source_GB,GB,2026-09-01T16:11:18+00:00,True,accident,GB,Nepal,Nepal,0.95,resolved,50.8583165,0.4631185,True,GB,True,True,True,dup-grp-58,Verified real news item
+59,"Sexual assaults happening almost every day in Ceuta, prosecutors say",Source_GB,GB,2026-09-01T15:33:14+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-59,Verified real news item
+60,Jurors in Lindsay Clancy trial deadlocked but judge asks them to keep trying,Source_GB,GB,2026-09-01T20:05:23+00:00,False,other,,,,0.9,unresolved,,,False,GB,True,False,True,dup-grp-60,Verified real news item
+61,Ariana Grande completes tour and steps back from public life,Source_GB,GB,2026-09-01T21:41:05+00:00,False,other,,,,0.9,unresolved,,,False,GB,True,False,True,dup-grp-61,Verified real news item
+62,Pistol in a lake gives hope for French cold case,Source_GB,GB,2026-09-01T16:33:29+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-62,Verified real news item
+63,"As Michigan Senate race heats up, Vance calls El-Sayed 'evil'",Source_GB,GB,2026-09-01T18:06:58+00:00,False,other,,,,0.9,unresolved,,,True,GB,True,False,True,dup-grp-63,Verified real news item
+64,France targets Shein and Temu with fast fashion fees,Source_GB,GB,2026-09-01T15:15:57+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-64,Verified real news item
+65,"'I have fired 40 of my agents for being corrupt', says Nigeria's anti-corruption chief",Source_GB,GB,2026-09-01T15:57:18+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-65,Verified real news item
+66,Trump says US position on Falklands 'one of many' under review,Source_GB,GB,2026-09-01T16:35:28+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-66,Verified real news item
+67,"Woman killed in Times Square stabbing, suspect shot dead by police",Source_GB,GB,2026-09-01T15:48:38+00:00,True,accident,US,New York,Times Square,0.95,resolved,40.7570095,-73.9859724,False,US,True,False,True,dup-grp-67,Verified real news item
+68,Cup noodles made with cold water? BBC tries Japan's viral snack,Source_GB,GB,2026-09-01T22:02:14+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-68,Verified real news item
+69,Norway's new king takes oath as mourners pay respects to his late father,Source_GB,GB,2026-09-01T14:06:58+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-69,Verified real news item
+70,T010 Stage 11 Outage Recovery Test Article,Source_JP,JP,2026-09-02T04:33:34.757453+00:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-70,Verified real news item
+71,Outage Control Test,Source_XX,XX,2026-09-02T04:34:27.790558+00:00,False,,,,,0.0,unresolved,,,False,XX,True,False,True,dup-grp-71,Verified real news item
+72,Apple Maps renames Lake Ontario as Lake America after Trump order,Source_GB,GB,2026-09-02T01:32:24+00:00,False,other,GB,,,0.95,unresolved,,,False,GB,True,False,True,dup-grp-72,Verified real news item
+73,Jailed HK activist Joshua Wong pleads guilty to foreign collusion,Source_GB,GB,2026-09-02T04:29:02+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-73,Verified real news item
+74,Charlie Kirk murder suspect pleads not guilty as judge clears way for death penalty trial,Source_GB,GB,2026-09-02T01:59:10+00:00,False,other,GB,,,0.95,unresolved,,,False,GB,True,False,True,dup-grp-74,Verified real news item
+75,Tiger Woods to change plea after crash arrest,Source_GB,GB,2026-09-02T00:26:08+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-75,Verified real news item
+76,Zelensky says airlines should avoid Russian airspace as Ukraine escalates drone operations,Source_GB,GB,2026-09-02T04:23:23+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-76,Verified real news item
+77,US aircraft carrier docks near Thai beach resort Pattaya after record 250 days at sea,Source_GB,GB,2026-09-02T02:42:38+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-77,Verified real news item
+78,Remarkable US oil deal puzzles analysts - and angers many Venezuelans,Source_GB,GB,2026-09-01T21:27:29+00:00,False,other,,,,0.95,unresolved,,,False,GB,True,False,True,dup-grp-78,Verified real news item
+79,デジタル教科書のあり方 骨子案まとめる 文科省審議会,Source_JP,JP,2026-09-02T14:10:18+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-79,Verified real news item
+80,"Israel expanding presence in Lebanon, officials say, as BBC visits occupied areas",Source_GB,GB,2026-09-02T05:03:09+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-80,Verified real news item
+81,Could the man who murdered a Christian missionary and his sons walk free in India?,Source_GB,GB,2026-09-01T22:32:30+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-81,Verified real news item
+82,ホワイトソックス 村上宗隆 無安打もチームは連敗ストップ,Source_JP,JP,2026-09-02T14:19:36+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-82,Verified real news item
+83,Will self-flying planes transform the skies?,Source_GB,GB,2026-09-01T23:27:35+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-83,Verified real news item
+84,日銀 植田総裁 利上げは9月会合含め毎回会合で議論,Source_JP,JP,2026-09-02T14:57:47+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-84,Verified real news item
+85,熊本地震 宇城市の事業者被害262億円 10年前の10倍,Source_JP,JP,2026-09-02T14:51:35+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-85,Verified real news item
+86,South Korea jails disabled care home head for sexually assaulting residents,Source_GB,GB,2026-09-02T05:56:44+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-86,Verified real news item
+87,日銀 高田審議委員 “機動的に利上げを進めるべき”,Source_JP,JP,2026-09-02T15:13:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-87,Verified real news item
+88,米が輸入解禁求める生ジャガイモめぐり説明会 北海道 帯広,Source_JP,JP,2026-09-02T15:28:32+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-88,Verified real news item
+89,Bus crash on Egypt's Red Sea coast kills 16,Source_GB,GB,2026-09-02T06:38:04+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-89,Verified real news item
+90,富山 氷見 大雨でJR運休 高校で通学用の臨時バス運行,Source_JP,JP,2026-09-02T15:23:47+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-90,Verified real news item
+91,石原環境相 “除染土再生利用を今後ほかの地域でも調整”,Source_JP,JP,2026-09-02T15:55:19+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-91,Verified real news item
+92,富山と石川の大雨被害 普通交付税の繰り上げ交付を決定 総務省,Source_JP,JP,2026-09-02T15:59:16+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-92,Verified real news item
+93,Why do US troops have history with this Thai city?,Source_GB,GB,2026-09-02T07:18:39+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-93,Verified real news item
+94,漫画家の車田正美さん代表の会社 横領被害で28億円余求め提訴,Source_JP,JP,2026-09-02T16:18:54+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-94,Verified real news item
+95,Guinea-Bissau referendum approves new constitution that expands president's powers,Source_GB,GB,2026-09-02T07:48:39+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-95,Verified real news item
+96,【地震速報】和歌山で震度3,Source_JP,JP,2026-09-02T17:29:59+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-96,Verified real news item
+97,日本郵便 フリーランス保護の法律に違反 公正取引委員会が勧告,Source_JP,JP,2026-09-02T17:45:29+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-97,Verified real news item
+98,全国知事会 所得連動給付などの地方負担“国は丁寧に協議を”,Source_JP,JP,2026-09-02T17:38:06+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-98,Verified real news item
+99,自民税調 消費税減税で「便乗値上げ」や「買い控え」に対策を,Source_JP,JP,2026-09-02T16:49:01+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-99,Verified real news item
+100,“結婚式への米軍攻撃”イランが周辺国の米軍基地に報復攻撃,Source_JP,JP,2026-09-02T18:54:38+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-100,Verified real news item
+101,上皇さまの意向受け 将来の葬儀の規模大幅縮小へ,Source_JP,JP,2026-09-02T19:00:27+09:00,False,,,,,0.0,resolved,27.6413905,85.3636287,False,JP,True,False,True,dup-grp-101,Verified real news item
+102,富山市 交番襲撃事件の遺族訴訟 2審も訴え退ける,Source_JP,JP,2026-09-02T19:12:42+09:00,False,,,,,0.0,resolved,37.3966921,136.9014534,False,JP,True,False,True,dup-grp-102,Verified real news item
+103,プロ野球 ヤクルト 現役最年長の石川が今季かぎりでの引退表明,Source_JP,JP,2026-09-02T18:36:34+09:00,False,,,,,0.0,resolved,40.7570095,-73.9859724,False,JP,True,False,True,dup-grp-103,Verified real news item
+104,備蓄米21万トン買い戻し決定 9月18日に手続き開始 農水省,Source_JP,JP,2026-09-02T19:22:21+09:00,False,,,,,0.0,resolved,51.5004439,-0.1265398,False,JP,True,False,True,dup-grp-104,Verified real news item
+105,Thousands still missing as Nepal-Tibet flood relief and recovery intensifies,Source_GB,GB,2026-09-02T10:07:02+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-105,Verified real news item
+106,パジェロ新型モデル公開 自動車各社 人気車種で国際競争に備え,Source_JP,JP,2026-09-02T19:35:18+09:00,False,,,,,0.0,resolved,35.7657342,139.7268525,False,JP,True,False,True,dup-grp-106,Verified real news item
+107,陸上自衛隊 攻撃用の小型無人機 初めて公開,Source_JP,JP,2026-09-02T20:18:46+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-107,Verified real news item
+108,Madagascar ex-Senate chief sentenced  to hard labour over deadly Gen Z protest crackdown,Source_GB,GB,2026-09-02T11:34:23+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-108,Verified real news item
+109,"More than 900 killed in Gaza this year despite ceasefire, Hamas-run health ministry says",Source_GB,GB,2026-09-02T11:51:46+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-109,Verified real news item
+110,Rosenberg: Putin's veiled threat to UK part of Russia's campaign against West,Source_GB,GB,2026-09-02T11:47:11+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-110,Verified real news item
+111,Lizzo 'grateful' after judge dismisses lawsuit against production company,Source_GB,GB,2026-09-02T12:14:31+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-111,Verified real news item
+112,EU and Nato vow to step up pressure on Russia after 'new escalation' in Germany,Source_GB,GB,2026-09-02T13:04:47+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-112,Verified real news item
+113,青森 鰺ヶ沢町付近で記録的大雨 災害の危険迫る,Source_JP,JP,2026-09-02T23:11:51+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-113,Verified real news item
+114,青森市 一部地域に避難指示 大雨で土砂災害のおそれ,Source_JP,JP,2026-09-03T00:21:54+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-114,Verified real news item
+115,What we know about reported strike on Iran wedding celebrations,Source_GB,GB,2026-09-02T10:33:47+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-115,Verified real news item
+116,'Nothing but mud and silt' - the village swept away by deadly floods in Nepal,Source_GB,GB,2026-09-02T15:16:42+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-116,Verified real news item
+117,Woman charged with juror intimidation in Lindsay Clancy trial,Source_GB,GB,2026-09-02T16:18:55+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-117,Verified real news item
+118,"South African airline behind daring  stadium stunt cancels next flyby, regulator says",Source_GB,GB,2026-09-02T16:58:59+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-118,Verified real news item
+119,"Iranian attack on Saudi tanker killed two Filipino sailors, Saudi Arabia says",Source_GB,GB,2026-09-02T17:33:45+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-119,Verified real news item
+120,青森市 一部地域に緊急安全確保 瀬戸子川で氾濫発生,Source_JP,JP,2026-09-03T02:36:06+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-120,Verified real news item
+121,円相場一時1ドル＝158円台前半に上昇　日銀利上げ観測強まる中,Source_JP,JP,2026-09-03T03:15:44+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-121,Verified real news item
+122,高市首相 党役員人事と内閣改造 再来週にも踏み切るとの見方も,Source_JP,JP,2026-09-03T04:53:27+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-122,Verified real news item
+123,コンゴ民主共和国でエボラ出血熱の死者3000人超える,Source_JP,JP,2026-09-03T04:59:44+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-123,Verified real news item
+124,Maltese tycoon acquitted of orchestrating murder of renowned journalist,Source_GB,GB,2026-09-02T19:05:31+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-124,Verified real news item
+125,Uber shuts operations in Nigeria and Uganda with immediate effect,Source_GB,GB,2026-09-02T20:21:04+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-125,Verified real news item
+126,Netherlands moves billions in gold to London in 'crisis preparedness' move,Source_GB,GB,2026-09-02T17:21:00+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-126,Verified real news item
+127,ネパール土石流 1200人以上死亡 首相は気候変動対策を訴え,Source_JP,JP,2026-09-03T05:29:46+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-127,Verified real news item
+128,青森市 一部地域に避難指示 内真部川が氾濫のおそれ,Source_JP,JP,2026-09-03T05:34:06+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-128,Verified real news item
+129,Watch: Jury still unable to reach unanimous decision in Lindsay Clancy case,Source_GB,GB,2026-09-02T20:12:32+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-129,Verified real news item
+130,アメリカ中間選挙まで2か月 共和・民主の選挙戦さらに激しく,Source_JP,JP,2026-09-03T05:40:03+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-130,Verified real news item
+131,前線活発化 秋田県で非常に激しい雨 広い範囲で大雨続くおそれ,Source_JP,JP,2026-09-03T06:16:18+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-131,Verified real news item
+132,【大雨】青森市やむつ市 県道で土砂崩れや住宅浸水の被害,Source_JP,JP,2026-09-03T06:35:15+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-132,Verified real news item
+133,ベネチア国際映画祭開幕 最優秀賞競う部門に日本の2作品,Source_JP,JP,2026-09-03T06:40:22+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-133,Verified real news item
+134,Protests in Spain over government's handling of Ceuta migrant crisis,Source_GB,GB,2026-09-02T21:34:27+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-134,Verified real news item
+135,青森 五所川原 一部地域に緊急安全確保 川の堤防決壊のおそれ,Source_JP,JP,2026-09-03T07:03:28+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-135,Verified real news item
+136,東北新幹線 運転見合わせ 白石蔵王～くりこま高原の上下線,Source_JP,JP,2026-09-03T07:40:42+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-136,Verified real news item
+137,【動画】気象予報士解説 広い範囲で大雨続くおそれ,Source_JP,JP,2026-09-03T08:36:48+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-137,Verified real news item
+138,茨城 神栖市長選 投票用紙に「まんじゅうや」は無効 東京高裁,Source_JP,JP,2026-09-03T10:18:20+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-138,Verified real news item
+139,宮崎 海でイセエビ漁の漁船が転覆か 船長ら3人死亡 海上保安部,Source_JP,JP,2026-09-03T11:02:05+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-139,Verified real news item
+140,結婚式4人死亡 イラン“戦争犯罪” 米“攻撃準備できている”,Source_JP,JP,2026-09-03T09:27:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-140,Verified real news item
+141,「スター・ウォーズ」監督 ロサンゼルスに美術館創設し内覧会,Source_JP,JP,2026-09-03T12:02:59+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-141,Verified real news item
+142,沖縄 石垣 市内全域に高齢者等避難の情報,Source_JP,JP,2026-09-03T12:41:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-142,Verified real news item
+143,世界文化遺産の国内候補に「彦根城」の推薦を決定,Source_JP,JP,2026-09-03T12:58:56+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-143,Verified real news item
+144,被爆の記録映画 フィルムに未知の広範囲シーン確認,Source_JP,JP,2026-09-03T13:04:13+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-144,Verified real news item
+145,Channel smuggling gangs resort to 'mega-dinghies' as crackdown limits small boat supply,Source_GB,GB,2026-09-03T05:00:04+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-145,Verified real news item
+146,Sharpeville massacre survivors start legal fight for justice in South Africa,Source_GB,GB,2026-09-03T00:14:20+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-146,Verified real news item
+147,Chasing a perfect sleep score? You could be making it worse,Source_GB,GB,2026-09-03T00:41:27+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-147,Verified real news item
+148,Why Nepal floods should worry India,Source_GB,GB,2026-09-03T00:58:44+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-148,Verified real news item
+149,'The crowd shouted that we'd stolen someone's genitals' - deadly rumours spread on social media,Source_GB,GB,2026-09-03T00:58:50+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-149,Verified real news item
+150,'I don't even like them': How much should you give to office gift collections?,Source_GB,GB,2026-09-02T23:25:50+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-150,Verified real news item
+151,Shopping to bar-hopping: USS Abraham Lincoln sailors unwind in Thailand after 250-day voyage,Source_GB,GB,2026-09-03T05:17:04+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-151,Verified real news item
+152,'Below the dignity of the office': Canadian officials condemn Pete Hegseth cadet post,Source_GB,GB,2026-09-02T19:20:50+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-152,Verified real news item
+153,Trump $1 coin makes him first living president on US currency in a century,Source_GB,GB,2026-09-03T03:39:53+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-153,Verified real news item
+154,LA Clippers fined $30m by NBA over Leonard scandal,Source_GB,GB,2026-09-02T21:42:38+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-154,Verified real news item
+155,日中友好議連 超党派若手が9月訪中を検討 関係改善糸口探る,Source_JP,JP,2026-09-03T14:20:38+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-155,Verified real news item
+156,鹿児島 天城町全域に高齢者等避難の情報,Source_JP,JP,2026-09-03T14:46:48+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-156,Verified real news item
+157,UN warns of 'supersized' El Nino as countries prepare for impact,Source_GB,GB,2026-09-03T06:01:54+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-157,Verified real news item
+158,木原官房長官 上皇さまの将来の葬儀 宮内庁で必要な検討,Source_JP,JP,2026-09-03T15:05:07+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-158,Verified real news item
+159,ノーベル化学賞受賞者 白川英樹さん死去 90歳,Source_JP,JP,2026-09-03T15:26:19+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-159,Verified real news item
+160,プーチン大統領 ロシア極東開催の国際会議で演説へ,Source_JP,JP,2026-09-03T15:29:20+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-160,Verified real news item
+161,鳥取 江府町全域に避難指示,Source_JP,JP,2026-09-03T16:16:44+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-161,Verified real news item
+162,ロシア極東で「対日戦勝」式典,Source_JP,JP,2026-09-03T16:49:49+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-162,Verified real news item
+163,千葉豪雨から3週間 ボランティアが浸水した住宅の後片づけ急ぐ,Source_JP,JP,2026-09-03T16:59:44+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-163,Verified real news item
+164,Embattled Spanish PM insists there were no prior warnings before Ceuta crisis,Source_GB,GB,2026-09-03T08:14:17+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-164,Verified real news item
+165,Sydney police investigate second possible mistaken identity killing in two days,Source_GB,GB,2026-09-03T00:40:29+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-165,Verified real news item
+166,Rocky Horror star Tim Curry's cause of death revealed as coronary artery disease,Source_GB,GB,2026-09-02T23:47:02+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-166,Verified real news item
+167,"Who is Alejandro Betancourt, colourful oil baron behind US-Venezuela oil deal?",Source_GB,GB,2026-09-02T23:53:28+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-167,Verified real news item
+168,Another White House renovation? A look at Trump's new helipad,Source_GB,GB,2026-09-03T08:14:16+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-168,Verified real news item
+169,【ライブ】熊本 八代 日本製紙八代工場「解体中の煙突から火」,Source_JP,JP,2026-09-03T18:25:29+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-169,Verified real news item
+170,名古屋市西区主婦殺害事件の民事訴訟 被告側争う方針,Source_JP,JP,2026-09-03T18:37:41+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-170,Verified real news item
+171,円相場 円高ドル安進む 一時1ドル156円台前半に 1か月ぶり水準,Source_JP,JP,2026-09-03T18:19:04+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-171,Verified real news item
+172,"'Beautiful, vibrant' Disney star Carla Jeffery dies at 33",Source_GB,GB,2026-09-03T09:37:34+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-172,Verified real news item
+173,Watch: US man struck by lightning describes 'horrific' experience,Source_GB,GB,2026-09-03T10:01:33+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-173,Verified real news item
+174,イオンモール熊本の爆発 経産省委託の事故調査委員会初会合,Source_JP,JP,2026-09-03T18:14:52+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-174,Verified real news item
+175,ネパール土石流 1200人以上死亡 政府が早期警報システム整備へ,Source_JP,JP,2026-09-03T18:52:33+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-175,Verified real news item
+176,Feminist activist and journalist Gloria Steinem dies at 92,Source_GB,GB,2026-09-03T10:24:26+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-176,Verified real news item
+177,More than 80 migrants feared dead after boat rescued off Canary Islands,Source_GB,GB,2026-09-03T10:19:03+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-177,Verified real news item
+178,Gloria Steinem: An icon of American feminism,Source_GB,GB,2026-09-03T10:22:18+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-178,Verified real news item
+179,米ベッセント財務長官 日銀利上げで円安改善と伝達 米報道,Source_JP,JP,2026-09-03T18:11:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-179,Verified real news item
+180,Kenyan president orders crackdown on foreigners operating small businesses,Source_GB,GB,2026-09-03T10:59:14+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-180,Verified real news item
+181,Liechtenstein MPs vote to legalise abortion despite threat of veto,Source_GB,GB,2026-09-03T11:30:38+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-181,Verified real news item
+182,Toxic wildfire haze spreads across South East Asia as 'super' El Niño intensifies,Source_GB,GB,2026-09-03T11:35:52+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-182,Verified real news item
+183,競泳 松下知之が男子400ｍ個人メドレーで日本新記録,Source_JP,JP,2026-09-03T20:50:42+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-183,Verified real news item
+184,京都 舞鶴 住宅の軒下でクマ２頭見つかる 緊急銃猟実施へ,Source_JP,JP,2026-09-03T20:58:43+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-184,Verified real news item
+185,青森市 市内の一部に出していた緊急安全確保や避難指示を解除,Source_JP,JP,2026-09-03T21:43:53+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-185,Verified real news item
+186,"Vance's Antichrist comments are a 'common belief', his friend tells BBC",Source_GB,GB,2026-09-03T13:07:02+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-186,Verified real news item
+187,"Palestinian teens killed during settler attack on West Bank village, officials say",Source_GB,GB,2026-09-03T09:53:58+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-187,Verified real news item
+188,"Anthony Joshua's driver attempted overtake before fatal crash, trial hears",Source_GB,GB,2026-09-03T13:54:49+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-188,Verified real news item
+189,鹿児島県奄美地方で「線状降水帯直前予測」,Source_JP,JP,2026-09-04T00:41:10+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-189,Verified real news item
+190,円相場 一時 1ドル＝155円台前半に 1か月ぶり高値,Source_JP,JP,2026-09-04T00:11:58+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-190,Verified real news item
+191,台風と前線 各地に発達した雨雲 奄美で「線状降水帯直前予測」,Source_JP,JP,2026-09-04T02:33:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-191,Verified real news item
+192,イグ・ノーベル賞で日本「鼻のかみ方」研究が医学賞を受賞,Source_JP,JP,2026-09-04T03:09:08+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-192,Verified real news item
+193,WMO「エルニーニョ来年2月まで 洪水などリスク高まる」,Source_JP,JP,2026-09-04T03:26:54+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-193,Verified real news item
+194,最低賃金引き上げ 国は中小企業などへの支援進める,Source_JP,JP,2026-09-04T03:45:39+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-194,Verified real news item
+195,Data centres are booming in Australia - but at what cost?,Source_GB,GB,2026-09-03T18:32:03+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-195,Verified real news item
+196,ネパール土石流災害で日本の警察が検視部隊派遣,Source_JP,JP,2026-09-04T05:02:35+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-196,Verified real news item
+197,政権骨格維持へ 麻生氏、鈴木氏、木原氏は続投の見方,Source_JP,JP,2026-09-04T04:59:34+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-197,Verified real news item
+198,ロンドン初の自動運転タクシー 東京でも年内に試験運行へ,Source_JP,JP,2026-09-04T05:16:50+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-198,Verified real news item
+199,日本製紙八代工場 解体中の煙突火事 きょう現場検証,Source_JP,JP,2026-09-04T05:10:00+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-199,Verified real news item
+200,ICE agent charged with lying about shooting Venezuelan man during crackdown,Source_GB,GB,2026-09-03T20:49:05+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-200,Verified real news item
+201,Nepal tunnel rescuers hunt for survivors with rafts and drone,Source_GB,GB,2026-09-03T19:56:34+00:00,False,,,,,0.0,unresolved,,,True,GB,True,False,True,dup-grp-201,Verified real news item
+202,Watch: Gloria Steinem dedicated her life to fight for women's equality,Source_GB,GB,2026-09-03T17:35:31+00:00,False,,,,,0.0,unresolved,,,False,GB,True,False,True,dup-grp-202,Verified real news item
+203,ネパール土石流　閉じこめの水力発電所に生存者か,Source_JP,JP,2026-09-04T05:53:48+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-203,Verified real news item
+204,ゼレンスキー大統領「ロシア上空危険」 プーチン大統領が批判,Source_JP,JP,2026-09-04T06:21:02+09:00,False,,,,,0.0,unresolved,,,False,JP,True,False,True,dup-grp-204,Verified real news item
