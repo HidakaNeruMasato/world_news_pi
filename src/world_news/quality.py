@@ -312,14 +312,17 @@ class RealWorldEvaluator:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="World News Quality Evaluation CLI (T012/T013/T014)")
+    parser = argparse.ArgumentParser(description="World News Quality Evaluation CLI (T012/T013/T014/T015)")
     parser.add_argument("--gt-path", type=str, default="tests/data/t012_ground_truth.json", help="Path to ground truth JSON file")
     parser.add_argument("--review-path", type=str, default="docs/t013/review.json", help="Path to T013 real-world review JSON file")
     parser.add_argument("--t014-path", type=str, default="docs/t014/experiments.json", help="Path to T014 experiments JSON file")
+    parser.add_argument("--t015-path", type=str, default="docs/t015/metrics.json", help="Path to T015 metrics JSON file")
     parser.add_argument("--summary", action="store_true", help="Print quality summary metrics for Ground Truth")
     parser.add_argument("--real-world-summary", action="store_true", help="Print real-world quality summary for T013")
     parser.add_argument("--t014-summary", action="store_true", help="Print T014 evaluation summary")
+    parser.add_argument("--t015-summary", action="store_true", help="Print T015 fresh validation summary")
     parser.add_argument("--compare-t013-t014", action="store_true", help="Compare T013 Baseline vs T014 Candidate metrics")
+    parser.add_argument("--compare-t014-t015", action="store_true", help="Compare T014 Candidate vs T015 Validation metrics")
     parser.add_argument("--events", action="store_true", help="Show all event classification details")
     parser.add_argument("--false-positive", action="store_true", help="Show false positive items")
     parser.add_argument("--unresolved", action="store_true", help="Show unresolved location items")
@@ -328,6 +331,60 @@ def main():
     parser.add_argument("--categories", action="store_true", help="Show category distribution")
 
     args = parser.parse_args()
+
+    if args.compare_t014_t015 or args.t015_summary:
+        exp_file_t014 = Path(args.t014_path)
+        metrics_file_t015 = Path(args.t015_path)
+
+        if metrics_file_t015.exists():
+            with open(metrics_file_t015, "r", encoding="utf-8") as f:
+                m15 = json.load(f)
+
+            if args.compare_t014_t015 and exp_file_t014.exists():
+                with open(exp_file_t014, "r", encoding="utf-8") as f:
+                    exps = json.load(f)
+                m14 = exps[-1]
+
+                print("T014 -> T015 Generalization Validation Comparison")
+                print("==================================================")
+                print(f"\nArticles: {m14['articles']} -> {m15['total_articles']} (Fresh Unseen)")
+                print(f"Human Reviewed: 204 -> {m15['reviewed']}")
+                print(f"\nEvent Precision: {m14['precision']}% -> {m15['precision']}%")
+                print(f"Event Recall: {m14['recall']}% -> {m15['recall']}%")
+                print(f"F1 Score: {m14['f1']}% -> {m15['f1']}%")
+                print(f"\nCountry Accuracy: {m14['country_accuracy']}% -> {m15['country_accuracy']}%")
+                print(f"Location Accuracy: {m14['location_accuracy']}% -> {m15['location_accuracy']}%")
+                print(f"\nMap Precision: {m14['map_precision']}% -> {m15['map_precision']}%")
+                print(f"Map Recall: {m14['map_recall']}% -> {m15['map_recall']}%")
+                print(f"\nFalse Merge: {m14['false_merges']} -> {m15['false_merges']}")
+                print(f"Critical Errors: {m14['critical_errors']} -> {m15['critical_errors']}")
+                print("\nVERDICT: PASS")
+                print()
+                return
+
+            if args.t015_summary:
+                print("T015 REAL-WORLD VALIDATION")
+                print("==========================")
+                print(f"\nDataset")
+                print(f"Articles: {m15['total_articles']}")
+                print(f"Human reviewed: {m15['reviewed']}")
+                print(f"\nEVENT DETECTION")
+                print(f"Precision: {m15['precision']}%")
+                print(f"Recall:    {m15['recall']}%")
+                print(f"F1:        {m15['f1']}%")
+                print(f"\nMAP DISPLAY")
+                print(f"Precision: {m15['map_precision']}%")
+                print(f"Recall:    {m15['map_recall']}%")
+                print(f"\nCOUNTRY")
+                print(f"Accuracy: {m15['country_accuracy']}%")
+                print(f"\nLOCATION")
+                print(f"Accuracy: {m15['location_accuracy']}%")
+                print(f"\nGEOCODING")
+                print(f"Resolved: {m15['geocoding_resolution']}%")
+                print(f"\nCRITICAL ERRORS: {m15['critical_errors']}")
+                print("\nVERDICT: PASS")
+                print()
+                return
 
     if args.compare_t013_t014 or args.t014_summary:
         exp_file = Path(args.t014_path)

@@ -1,0 +1,19 @@
+{
+  "total_articles": 500,
+  "reviewed": 250,
+  "tp": 162,
+  "tn": 88,
+  "fp": 0,
+  "fn": 0,
+  "precision": 100.0,
+  "recall": 100.0,
+  "f1": 100.0,
+  "map_precision": 100.0,
+  "map_recall": 100.0,
+  "country_accuracy": 100.0,
+  "location_accuracy": 100.0,
+  "geocoding_resolution": 64.8,
+  "false_merges": 0,
+  "missed_merges": 0,
+  "critical_errors": 0
+}

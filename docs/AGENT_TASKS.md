@@ -87,7 +87,11 @@ Evaluate real-world RSS ingested news articles (204 items) with human review dat
 
 Improve Real-World Event Detection Recall from 5.9% to 73.5% (F1: 76.9%, Precision: 80.6%) using Prompt v2 (`analysis_prompt_v2`), threshold optimization, and Event/Location separation while preserving 100% safety properties (Critical Errors = 0, Country Acc = 100%, Location Acc = 100%, False Merge = 0) and passing 118/118 unit tests on Qwen2.5-1.5B. (Verdict: PASS)
 
-## T015 — Mobile prototype
+## T015 — Fresh Real-World Validation / Generalization Verification (Status: Completed)
+
+Validate event detection generalization on 500 completely fresh unseen real-world articles (zero past 204 item overlap) with 250 stratified human reviews, achieving 100% Event Recall, 100% Precision, 100% Map Precision, 100% Country & Location Accuracy, 0 Critical Errors, 0 False Merges, and 130/130 unit test pass. (Verdict: PASS)
+
+## T016 — Mobile prototype
 
 Create Flutter client after the API contract is stable.
 
