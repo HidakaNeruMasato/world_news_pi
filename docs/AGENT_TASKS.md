@@ -95,7 +95,11 @@ Validate event detection generalization on 500 completely fresh unseen real-worl
 
 Implement continuous production quality monitoring system (`world_news.monitoring`), isolated database (`monitoring.db`), deduplicated alert engine with recovery state machine (`OPEN` -> `RESOLVED`), Systemd/Disk/Memory/SQLite/LLM/Queue/Geocoder/API health checks, Fault Injection simulation tests, CLI tools (`world_news.monitor`), and 150/150 unit test pass. (Verdict: PASS)
 
-## T017 — Mobile prototype
+## T017 — Production Readiness / Operational Acceptance (Status: Completed)
+
+Complete production readiness audit across systemd autostart, host reboot recovery, network/API/LLM/Geocoder failover, SQLite `.backup` online backup & restore verification, secret scan, CORS, permissions, RTO/RPO (<2.2m RTO / 0m RPO), runbook (Cases 1-10), acceptance criteria checklist, and 170/170 unit test pass. (Verdict: PRODUCTION READY)
+
+## T018 — Mobile prototype
 
 Create Flutter client after the API contract is stable.
 
