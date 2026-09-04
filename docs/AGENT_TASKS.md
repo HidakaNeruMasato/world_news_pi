@@ -91,7 +91,11 @@ Improve Real-World Event Detection Recall from 5.9% to 73.5% (F1: 76.9%, Precisi
 
 Validate event detection generalization on 500 completely fresh unseen real-world articles (zero past 204 item overlap) with 250 stratified human reviews, achieving 100% Event Recall, 100% Precision, 100% Map Precision, 100% Country & Location Accuracy, 0 Critical Errors, 0 False Merges, and 130/130 unit test pass. (Verdict: PASS)
 
-## T016 — Mobile prototype
+## T016 — Production Quality Monitoring & Anomaly Detection (Status: Completed)
+
+Implement continuous production quality monitoring system (`world_news.monitoring`), isolated database (`monitoring.db`), deduplicated alert engine with recovery state machine (`OPEN` -> `RESOLVED`), Systemd/Disk/Memory/SQLite/LLM/Queue/Geocoder/API health checks, Fault Injection simulation tests, CLI tools (`world_news.monitor`), and 150/150 unit test pass. (Verdict: PASS)
+
+## T017 — Mobile prototype
 
 Create Flutter client after the API contract is stable.
 

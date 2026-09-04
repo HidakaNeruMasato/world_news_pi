@@ -323,6 +323,8 @@ def main():
     parser.add_argument("--t015-summary", action="store_true", help="Print T015 fresh validation summary")
     parser.add_argument("--compare-t013-t014", action="store_true", help="Compare T013 Baseline vs T014 Candidate metrics")
     parser.add_argument("--compare-t014-t015", action="store_true", help="Compare T014 Candidate vs T015 Validation metrics")
+    parser.add_argument("--monitoring-summary", action="store_true", help="Print monitoring summary")
+    parser.add_argument("--monitoring-review", action="store_true", help="Generate monitoring human review dataset")
     parser.add_argument("--events", action="store_true", help="Show all event classification details")
     parser.add_argument("--false-positive", action="store_true", help="Show false positive items")
     parser.add_argument("--unresolved", action="store_true", help="Show unresolved location items")
