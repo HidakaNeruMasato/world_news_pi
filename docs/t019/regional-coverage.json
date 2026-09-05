@@ -1,0 +1,140 @@
+{
+  "summary": {
+    "baseline_sources_count": 16,
+    "baseline_countries_count": 8,
+    "tested_candidates_count": 127,
+    "verified_ok_candidates_count": 69,
+    "selected_expansion_sources_count": 37,
+    "expanded_countries_count": 32
+  },
+  "regional_breakdown": [
+    {
+      "region": "South Asia",
+      "baseline_count": 0,
+      "ok_candidates": 9,
+      "selected_count": 4,
+      "countries_added": [
+        "IN",
+        "PK",
+        "BD"
+      ]
+    },
+    {
+      "region": "Southeast Asia",
+      "baseline_count": 1,
+      "ok_candidates": 8,
+      "selected_count": 7,
+      "countries_added": [
+        "ID",
+        "MY",
+        "SG",
+        "VN",
+        "MM",
+        "KH",
+        "PH"
+      ]
+    },
+    {
+      "region": "East Asia",
+      "baseline_count": 7,
+      "ok_candidates": 6,
+      "selected_count": 2,
+      "countries_added": [
+        "CN",
+        "HK"
+      ]
+    },
+    {
+      "region": "Oceania & Pacific Islands",
+      "baseline_count": 0,
+      "ok_candidates": 7,
+      "selected_count": 4,
+      "countries_added": [
+        "AU",
+        "NZ",
+        "PG",
+        "TO"
+      ]
+    },
+    {
+      "region": "Eastern Europe & Balkans",
+      "baseline_count": 0,
+      "ok_candidates": 5,
+      "selected_count": 4,
+      "countries_added": [
+        "PL",
+        "RO",
+        "HR",
+        "RS"
+      ]
+    },
+    {
+      "region": "Western & Nordic Europe",
+      "baseline_count": 4,
+      "ok_candidates": 8,
+      "selected_count": 2,
+      "countries_added": [
+        "ES",
+        "SE"
+      ]
+    },
+    {
+      "region": "Middle East",
+      "baseline_count": 1,
+      "ok_candidates": 4,
+      "selected_count": 3,
+      "countries_added": [
+        "IL",
+        "US_ME",
+        "GB_ME"
+      ]
+    },
+    {
+      "region": "Sub-Saharan Africa",
+      "baseline_count": 0,
+      "ok_candidates": 7,
+      "selected_count": 5,
+      "countries_added": [
+        "NG",
+        "GH",
+        "KE",
+        "ZM",
+        "CD"
+      ]
+    },
+    {
+      "region": "Central America & Caribbean",
+      "baseline_count": 0,
+      "ok_candidates": 7,
+      "selected_count": 5,
+      "countries_added": [
+        "MX",
+        "GT",
+        "PA",
+        "CU",
+        "JM"
+      ]
+    },
+    {
+      "region": "South America",
+      "baseline_count": 1,
+      "ok_candidates": 6,
+      "selected_count": 4,
+      "countries_added": [
+        "BR",
+        "AR",
+        "CO",
+        "VE"
+      ]
+    },
+    {
+      "region": "North America",
+      "baseline_count": 2,
+      "ok_candidates": 2,
+      "selected_count": 1,
+      "countries_added": [
+        "US"
+      ]
+    }
+  ]
+}

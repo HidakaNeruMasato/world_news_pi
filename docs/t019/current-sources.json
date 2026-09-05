@@ -1,0 +1,44 @@
+{
+  "baseline_feeds": [
+    {
+      "id": 1,
+      "name": "NHK News Top",
+      "country": "Japan",
+      "country_code": "JP",
+      "region": "East Asia",
+      "language": "ja",
+      "feed_url": "https://www.nhk.or.jp/rss/news/cat0.xml",
+      "type": "RSS 2.0",
+      "enabled": true
+    },
+    {
+      "id": 2,
+      "name": "BBC News World",
+      "country": "United Kingdom",
+      "country_code": "GB",
+      "region": "Western Europe",
+      "language": "en",
+      "feed_url": "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "type": "RSS 2.0",
+      "enabled": true
+    }
+  ],
+  "production_validation_sources": [
+    {"name": "NHK World / NHK News", "country_code": "JP", "region": "East Asia", "language": "ja"},
+    {"name": "Asahi Shimbun", "country_code": "JP", "region": "East Asia", "language": "ja"},
+    {"name": "Yomiuri Shimbun", "country_code": "JP", "region": "East Asia", "language": "ja"},
+    {"name": "Mainichi Shimbun", "country_code": "JP", "region": "East Asia", "language": "ja"},
+    {"name": "Kyodo News", "country_code": "JP", "region": "East Asia", "language": "ja"},
+    {"name": "Japan Times", "country_code": "JP", "region": "East Asia", "language": "en"},
+    {"name": "BBC News", "country_code": "GB", "region": "Western Europe", "language": "en"},
+    {"name": "Reuters", "country_code": "US", "region": "North America", "language": "en"},
+    {"name": "France 24", "country_code": "FR", "region": "Western Europe", "language": "en"},
+    {"name": "Deutsche Welle", "country_code": "DE", "region": "Western Europe", "language": "en"},
+    {"name": "ANSA", "country_code": "IT", "region": "Southern Europe", "language": "en"},
+    {"name": "Al Jazeera", "country_code": "QA", "region": "Middle East", "language": "en"},
+    {"name": "CBC News", "country_code": "CA", "region": "North America", "language": "en"},
+    {"name": "Yonhap News", "country_code": "KR", "region": "East Asia", "language": "en"},
+    {"name": "Manila Bulletin", "country_code": "PH", "region": "Southeast Asia", "language": "en"},
+    {"name": "El Comercio", "country_code": "PE", "region": "South America", "language": "es"}
+  ]
+}
