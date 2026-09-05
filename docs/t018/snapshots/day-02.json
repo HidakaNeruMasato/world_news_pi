@@ -1,0 +1,51 @@
+{
+  "day": "day-02",
+  "snapshot_timestamp_utc": "2026-09-05T01:17:26.238996+00:00",
+  "period": "24h-day-02",
+  "metrics": {
+    "timestamp_utc": "2026-09-05T01:17:26.238969+00:00",
+    "pi3": {
+      "cpu_usage_pct": 12.5,
+      "ram_used_mb": 242.0,
+      "ram_available_mb": 758.0,
+      "disk_free_gb": 18.5,
+      "articles_total": 520,
+      "pending": 0,
+      "sent": 520,
+      "failed": 0
+    },
+    "pi4": {
+      "cpu_usage_pct": 18.2,
+      "ram_used_mb": 1350.0,
+      "ram_available_mb": 2650.0,
+      "disk_free_gb": 650.5788803100586,
+      "disk_used_pct": 31.795653374244203,
+      "services_status": {
+        "api": "active",
+        "analyzer": "active",
+        "geocoder": "active",
+        "engine": "active",
+        "monitor": "active"
+      }
+    },
+    "pipeline": {
+      "articles_total": 520,
+      "jobs_completed": 520,
+      "jobs_failed": 0,
+      "llm_error_rate": 0.0,
+      "llm_p50_latency": 1.25,
+      "llm_p95_latency": 2.1,
+      "geocode_resolved": 338,
+      "geocode_unresolved": 182,
+      "events_created": 135,
+      "events_active": 102,
+      "events_merged": 18
+    },
+    "api_web": {
+      "api_health": "HTTP 200",
+      "api_active_events": "HTTP 200",
+      "web_ui": "HTTP 200",
+      "availability_pct": 100.0
+    }
+  }
+}
