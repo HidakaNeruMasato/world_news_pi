@@ -1,0 +1,16 @@
+[Unit]
+Description=World News Event Geocoder Service (Pi4 Location Resolver)
+After=network-online.target world-news-api.service world-news-analyzer.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/hidakamasato/world_news
+ExecStart=/home/hidakamasato/world_news/venv/bin/python -m world_news.geocoder
+Restart=always
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/home/hidakamasato/world_news/src
+
+[Install]
+WantedBy=default.target

@@ -147,6 +147,11 @@ def get_active_events(min_confidence: float = 0.50, limit: int = 100):
     }
 
 
+from world_news.dashboard.metrics import DashboardMetricsCollector
+
+dashboard_collector = DashboardMetricsCollector()
+
+
 @app.get("/api/events/{event_id}/articles")
 @app.get("/api/v1/events/{event_id}/articles")
 def get_event_articles(event_id: int):
@@ -167,8 +172,53 @@ def get_stats() -> Dict[str, Any]:
     return db.get_stats()
 
 
+# --- T019 Dashboard Endpoints ---
+
+@app.get("/api/dashboard/summary")
+def get_dashboard_summary(period: str = "24h"):
+    """T019 Dashboard Overview KPI Summary"""
+    return dashboard_collector.get_summary(period=period)
+
+
+@app.get("/api/dashboard/funnel")
+def get_dashboard_funnel(period: str = "24h"):
+    """T019 Pipeline Reduction Funnel Metrics"""
+    return dashboard_collector.get_funnel(period=period)
+
+
+@app.get("/api/dashboard/regions")
+def get_dashboard_regions(period: str = "24h"):
+    """T019 Regional Activity Breakdown"""
+    return dashboard_collector.get_regional_activity(period=period)
+
+
+@app.get("/api/dashboard/countries")
+def get_dashboard_countries(period: str = "24h"):
+    """T019 Event Country Activity Breakdown"""
+    return dashboard_collector.get_country_activity(period=period)
+
+
+@app.get("/api/dashboard/sources")
+def get_dashboard_sources(period: str = "24h"):
+    """T019 Source Media Performance & Conversion Rates"""
+    return dashboard_collector.get_source_metrics(period=period)
+
+
+@app.get("/api/dashboard/timeseries")
+def get_dashboard_timeseries(period: str = "24h"):
+    """T019 Time-series Activity Metrics"""
+    return dashboard_collector.get_timeseries(period=period)
+
+
+@app.get("/api/dashboard/source-health")
+def get_dashboard_source_health():
+    """T019 Monitoring Integration Health Status"""
+    return dashboard_collector.get_source_health()
+
+
 # Web ビルド成果物 (web/dist) の静的配信設定
 web_dist_dir = Path(__file__).resolve().parent.parent.parent.parent / "web" / "dist"
 if web_dist_dir.exists() and web_dist_dir.is_dir():
     app.mount("/", StaticFiles(directory=str(web_dist_dir), html=True), name="static_web")
+
 

@@ -311,3 +311,108 @@ def test_api_restart_data_persistence(temp_db_path):
     stats = db2.get_stats()
     assert stats["total_articles"] == 1
     assert stats["pending_jobs"] == 1
+
+
+# 15. GET /api/events/active 全判定条件テスト (要件 25 遵守)
+def test_active_events_api_filtering(api_client):
+    client, db_path = api_client
+    db = Pi4Database(db_path=db_path)
+    now_str = "2026-09-02T10:00:00Z"
+    old_str = "2020-01-01T00:00:00Z"
+
+    with db._get_connection() as conn:
+        # 1. active + resolved + conf 0.85 -> 含まれる
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, latitude, longitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (1, 1, 'earthquake', 'JP', 'Wajima', 37.3967, 136.9015, 0.85, 'resolved', ?, ?, ?, 'active', ?, ?)
+        """, (now_str, now_str, now_str, now_str, now_str))
+
+        # 2. expired -> 除外される
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, latitude, longitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (2, 2, 'flood', 'NP', 'Kathmandu', 27.7172, 85.3240, 0.90, 'resolved', ?, ?, ?, 'expired', ?, ?)
+        """, (old_str, old_str, old_str, old_str, old_str))
+
+        # 3. unresolved -> 除外される
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (3, 3, 'storm', 'US', 'Miami', 0.95, 'unresolved', ?, ?, ?, 'active', ?, ?)
+        """, (now_str, now_str, now_str, now_str, now_str))
+
+        # 4. confidence < 0.50 -> 除外される
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, latitude, longitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (4, 4, 'fire', 'GB', 'London', 51.5074, -0.1278, 0.30, 'resolved', ?, ?, ?, 'active', ?, ?)
+        """, (now_str, now_str, now_str, now_str, now_str))
+
+        # 5. latitude null -> 除外される
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, longitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (5, 5, 'crime', 'FR', 'Paris', 2.3522, 0.80, 'resolved', ?, ?, ?, 'active', ?, ?)
+        """, (now_str, now_str, now_str, now_str, now_str))
+
+        # 6. longitude null -> 除外される
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, latitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (6, 6, 'crime', 'FR', 'Paris', 48.8566, 0.80, 'resolved', ?, ?, ?, 'active', ?, ?)
+        """, (now_str, now_str, now_str, now_str, now_str))
+
+        # 7. multiple events -> 有効な2つ目を追加
+        conn.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, latitude, longitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (7, 7, 'accident', 'DE', 'Berlin', 52.5200, 13.4050, 0.75, 'resolved', ?, ?, ?, 'active', ?, ?)
+        """, (now_str, now_str, now_str, now_str, now_str))
+
+        conn.commit()
+
+    resp = client.get("/api/events/active")
+    assert resp.status_code == 200
+    data = resp.json()
+
+    assert "events" in data
+    assert "count" in data
+    assert data["count"] == 2
+    event_ids = [e["id"] for e in data["events"]]
+    assert 1 in event_ids
+    assert 7 in event_ids
+    assert 2 not in event_ids
+    assert 3 not in event_ids
+    assert 4 not in event_ids
+    assert 5 not in event_ids
+    assert 6 not in event_ids
+
+
+# 16. GET /api/events/{event_id}/articles 関連記事取得テスト
+def test_event_articles_api(api_client):
+    client, db_path = api_client
+    db = Pi4Database(db_path=db_path)
+    now_str = "2026-09-02T10:00:00Z"
+
+    with db._get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO articles (source_id, source_country, title, description, url, published_at, fetched_at, created_at, updated_at)
+            VALUES (1, 'JP', 'Wajima Earthquake Article', 'Desc', 'http://example.com/wajima', ?, ?, ?, ?)
+        """, (now_str, now_str, now_str, now_str))
+        art_id = cursor.lastrowid
+
+        cursor.execute("""
+            INSERT INTO events (article_id, analysis_id, event_type, country_code, city, latitude, longitude, confidence, geocoding_status, first_seen_at, last_seen_at, expires_at, status, created_at, updated_at)
+            VALUES (?, 1, 'earthquake', 'JP', 'Wajima', 37.3967, 136.9015, 0.85, 'resolved', ?, ?, ?, 'active', ?, ?)
+        """, (art_id, now_str, now_str, now_str, now_str, now_str))
+        evt_id = cursor.lastrowid
+
+        cursor.execute("""
+            INSERT INTO article_events (article_id, event_id, relation_type)
+            VALUES (?, ?, 'primary')
+        """, (art_id, evt_id))
+
+        conn.commit()
+
+    resp = client.get(f"/api/events/{evt_id}/articles")
+    assert resp.status_code == 200
+    data = resp.json()
+
+    assert data["count"] == 1
+    assert data["articles"][0]["title"] == "Wajima Earthquake Article"
+

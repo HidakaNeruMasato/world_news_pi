@@ -50,11 +50,16 @@ switch ($Action) {
     }
     "deploy-pi4" {
         Write-Host "=== Deploying to Pi4 ==="
-        ssh $Pi4 "mkdir -p ~/world_news/src ~/.config/systemd/user"
+        ssh $Pi4 "mkdir -p ~/world_news/src ~/world_news/web ~/.config/systemd/user"
         scp -r ./src/* "${Pi4}:~/world_news/src/"
+        if (Test-Path ".\web\dist") {
+            scp -r ./web/dist "${Pi4}:~/world_news/web/"
+        }
         scp ./config.example.yaml "${Pi4}:~/world_news/config.example.yaml"
         scp ./systemd/world-news-analyzer.service "${Pi4}:~/.config/systemd/user/"
         scp ./systemd/world-news-api.service "${Pi4}:~/.config/systemd/user/"
+        scp ./systemd/world-news-geocoder.service "${Pi4}:~/.config/systemd/user/"
+        scp ./systemd/world-news-engine.service "${Pi4}:~/.config/systemd/user/"
         scp ./systemd/llama-server.service "${Pi4}:~/.config/systemd/user/"
         ssh $Pi4 "systemctl --user daemon-reload"
         Write-Host "Pi4 deployment completed."

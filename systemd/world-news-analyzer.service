@@ -1,16 +1,14 @@
 [Unit]
-Description=World News Event Map - Pi4 Article Analyzer Service
-After=network-online.target
-Wants=network-online.target
+Description=World News Article Analyzer Service (Pi4 LLM Worker)
+After=network.target world-news-api.service
 
 [Service]
 Type=simple
 WorkingDirectory=%h/world_news
+Environment="PYTHONPATH=%h/world_news/src"
 ExecStart=%h/world_news/venv/bin/python -m world_news.analyzer
-Restart=on-failure
-RestartSec=10s
-Environment=PYTHONUNBUFFERED=1
-Environment=PYTHONPATH=%h/world_news/src
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=default.target
