@@ -1,0 +1,634 @@
+{
+  "overall_quality": {
+    "review_count": 150,
+    "average_scores": {
+      "interesting": 3.77,
+      "importance": 3.31,
+      "global_relevance": 3.11,
+      "map_value": 3.71,
+      "duplicate_redundancy": 1.37,
+      "local_noise": 1.92,
+      "would_view_on_map": 3.71
+    },
+    "rates": {
+      "map_user_value_rate": 84.0,
+      "high_value_rate": 84.0,
+      "low_value_rate": 16.0
+    },
+    "location": {
+      "correct": 126,
+      "approximately_correct": 0,
+      "wrong": 0,
+      "unknown": 24
+    },
+    "critical_errors": 0,
+    "potential_missed_valuable_count": 3,
+    "potential_missed_valuable": [
+      {
+        "event_id": 29,
+        "title": "Diplomatic Summit Scheduled to Convene in Geneva Next Month (Report #84)",
+        "event_country": "CH",
+        "importance": 4,
+        "would_view_on_map": 4
+      },
+      {
+        "event_id": 57,
+        "title": "Diplomatic Summit Scheduled to Convene in Geneva Next Month (Report #168)",
+        "event_country": "CH",
+        "importance": 4,
+        "would_view_on_map": 4
+      },
+      {
+        "event_id": 140,
+        "title": "Germany says Russia behind Leipzig airport drone attack",
+        "event_country": "GB",
+        "importance": 4,
+        "would_view_on_map": 4
+      }
+    ],
+    "map_noise_candidates_count": 0,
+    "map_noise_candidates": [],
+    "verdict": "PASS"
+  },
+  "problem_separation": {
+    "content_quality_problem": false,
+    "coverage_problem": true,
+    "details": "Content quality is high (84.0% Map User Value Rate, Avg Map Value 3.71, 0 Critical Errors). Primary bottleneck is Regional Feed Coverage Imbalance (Europe + East Asia = 68% of events, Africa / South America = 2% each despite 100% User Value Rate)."
+  },
+  "regional_coverage_analysis": {
+    "high_volume_regions": [
+      "Europe",
+      "East Asia"
+    ],
+    "under_represented_high_value_regions": [
+      "Africa",
+      "South America",
+      "Eastern Europe",
+      "Southeast Asia"
+    ],
+    "breakdown": {
+      "East Asia": {
+        "event_count": 34,
+        "average_interesting": 3.85,
+        "average_importance": 3.32,
+        "average_global_relevance": 3.24,
+        "average_map_value": 3.76,
+        "average_would_view": 3.76,
+        "average_local_noise": 1.97,
+        "user_value_rate": 82.4,
+        "high_value_rate": 82.4,
+        "low_value_rate": 17.6
+      },
+      "North America": {
+        "event_count": 25,
+        "average_interesting": 3.28,
+        "average_importance": 3.16,
+        "average_global_relevance": 2.88,
+        "average_map_value": 3.16,
+        "average_would_view": 3.16,
+        "average_local_noise": 2.2,
+        "user_value_rate": 64.0,
+        "high_value_rate": 64.0,
+        "low_value_rate": 36.0
+      },
+      "South America": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_global_relevance": 3.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "average_local_noise": 1.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      },
+      "Europe": {
+        "event_count": 63,
+        "average_interesting": 3.86,
+        "average_importance": 3.13,
+        "average_global_relevance": 3.0,
+        "average_map_value": 3.81,
+        "average_would_view": 3.81,
+        "average_local_noise": 1.97,
+        "user_value_rate": 90.5,
+        "high_value_rate": 90.5,
+        "low_value_rate": 9.5
+      },
+      "Eastern Europe": {
+        "event_count": 3,
+        "average_interesting": 5.0,
+        "average_importance": 5.0,
+        "average_global_relevance": 5.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "average_local_noise": 1.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      },
+      "Other": {
+        "event_count": 13,
+        "average_interesting": 3.54,
+        "average_importance": 3.15,
+        "average_global_relevance": 2.92,
+        "average_map_value": 3.31,
+        "average_would_view": 3.31,
+        "average_local_noise": 2.08,
+        "user_value_rate": 76.9,
+        "high_value_rate": 76.9,
+        "low_value_rate": 23.1
+      },
+      "Southeast Asia": {
+        "event_count": 6,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_global_relevance": 3.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "average_local_noise": 1.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      },
+      "Africa": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 5.0,
+        "average_global_relevance": 5.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "average_local_noise": 1.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      }
+    }
+  },
+  "source_analysis": {
+    "high_value_sources": [
+      "BBC News",
+      "Source_JP",
+      "Source_GB",
+      "Media Publisher"
+    ],
+    "medium_value_sources": [
+      "NHK World",
+      "France 24",
+      "Kyodo News",
+      "Reuters",
+      "ANSA",
+      "CBC News",
+      "Deutsche Welle",
+      "Al Jazeera",
+      "El Comercio",
+      "Yonhap News",
+      "Asahi Shimbun",
+      "Manila Bulletin",
+      "Yomiuri Shimbun",
+      "Japan Times",
+      "Mainichi Shimbun"
+    ],
+    "low_value_sources": [],
+    "breakdown": {
+      "BBC News": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.88,
+        "average_importance": 3.69,
+        "average_map_value": 3.88,
+        "average_would_view": 3.88,
+        "user_value_rate": 81.2,
+        "high_value_rate": 81.2,
+        "low_value_rate": 18.8
+      },
+      "NHK World": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.81,
+        "average_importance": 3.62,
+        "average_map_value": 3.69,
+        "average_would_view": 3.69,
+        "user_value_rate": 75.0,
+        "high_value_rate": 75.0,
+        "low_value_rate": 25.0
+      },
+      "France 24": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.5,
+        "average_importance": 3.44,
+        "average_map_value": 3.44,
+        "average_would_view": 3.44,
+        "user_value_rate": 68.8,
+        "high_value_rate": 68.8,
+        "low_value_rate": 31.2
+      },
+      "Kyodo News": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.44,
+        "average_importance": 3.5,
+        "average_map_value": 3.44,
+        "average_would_view": 3.44,
+        "user_value_rate": 68.8,
+        "high_value_rate": 68.8,
+        "low_value_rate": 31.2
+      },
+      "Reuters": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.75,
+        "average_importance": 3.56,
+        "average_map_value": 3.62,
+        "average_would_view": 3.62,
+        "user_value_rate": 75.0,
+        "high_value_rate": 75.0,
+        "low_value_rate": 25.0
+      },
+      "ANSA": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.44,
+        "average_importance": 3.5,
+        "average_map_value": 3.31,
+        "average_would_view": 3.31,
+        "user_value_rate": 68.8,
+        "high_value_rate": 68.8,
+        "low_value_rate": 31.2
+      },
+      "CBC News": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.62,
+        "average_importance": 3.5,
+        "average_map_value": 3.5,
+        "average_would_view": 3.5,
+        "user_value_rate": 75.0,
+        "high_value_rate": 75.0,
+        "low_value_rate": 25.0
+      },
+      "Deutsche Welle": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.56,
+        "average_importance": 3.5,
+        "average_map_value": 3.56,
+        "average_would_view": 3.56,
+        "user_value_rate": 75.0,
+        "high_value_rate": 75.0,
+        "low_value_rate": 25.0
+      },
+      "Al Jazeera": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.75,
+        "average_importance": 3.62,
+        "average_map_value": 3.62,
+        "average_would_view": 3.62,
+        "user_value_rate": 75.0,
+        "high_value_rate": 75.0,
+        "low_value_rate": 25.0
+      },
+      "El Comercio": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 3.53,
+        "average_importance": 3.4,
+        "average_map_value": 3.33,
+        "average_would_view": 3.33,
+        "user_value_rate": 66.7,
+        "high_value_rate": 66.7,
+        "low_value_rate": 33.3
+      },
+      "Yonhap News": {
+        "event_count": 16,
+        "insufficient_sample": false,
+        "average_interesting": 3.69,
+        "average_importance": 3.56,
+        "average_map_value": 3.56,
+        "average_would_view": 3.56,
+        "user_value_rate": 75.0,
+        "high_value_rate": 75.0,
+        "low_value_rate": 25.0
+      },
+      "Asahi Shimbun": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 3.47,
+        "average_importance": 3.47,
+        "average_map_value": 3.4,
+        "average_would_view": 3.4,
+        "user_value_rate": 66.7,
+        "high_value_rate": 66.7,
+        "low_value_rate": 33.3
+      },
+      "Manila Bulletin": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 3.33,
+        "average_importance": 3.4,
+        "average_map_value": 3.33,
+        "average_would_view": 3.33,
+        "user_value_rate": 66.7,
+        "high_value_rate": 66.7,
+        "low_value_rate": 33.3
+      },
+      "Yomiuri Shimbun": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 3.6,
+        "average_importance": 3.6,
+        "average_map_value": 3.53,
+        "average_would_view": 3.53,
+        "user_value_rate": 73.3,
+        "high_value_rate": 73.3,
+        "low_value_rate": 26.7
+      },
+      "Japan Times": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 3.27,
+        "average_importance": 3.27,
+        "average_map_value": 3.0,
+        "average_would_view": 3.0,
+        "user_value_rate": 60.0,
+        "high_value_rate": 60.0,
+        "low_value_rate": 40.0
+      },
+      "Mainichi Shimbun": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 3.53,
+        "average_importance": 3.47,
+        "average_map_value": 3.2,
+        "average_would_view": 3.2,
+        "user_value_rate": 66.7,
+        "high_value_rate": 66.7,
+        "low_value_rate": 33.3
+      },
+      "Source_JP": {
+        "event_count": 15,
+        "insufficient_sample": false,
+        "average_interesting": 4.0,
+        "average_importance": 3.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      },
+      "Source_GB": {
+        "event_count": 46,
+        "insufficient_sample": false,
+        "average_interesting": 4.0,
+        "average_importance": 3.07,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      },
+      "Media Publisher": {
+        "event_count": 5,
+        "insufficient_sample": false,
+        "average_interesting": 4.0,
+        "average_importance": 3.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0,
+        "high_value_rate": 100.0,
+        "low_value_rate": 0.0
+      }
+    }
+  },
+  "category_analysis": {
+    "high_suitability_categories": [
+      "earthquake",
+      "wildfire",
+      "storm",
+      "volcanic_eruption",
+      "flood",
+      "aviation_accident",
+      "maritime_accident",
+      "explosion",
+      "armed_conflict",
+      "landslide",
+      "infrastructure_failure"
+    ],
+    "low_suitability_categories": [
+      "economy",
+      "other"
+    ],
+    "breakdown": {
+      "earthquake": {
+        "event_count": 7,
+        "average_interesting": 3.71,
+        "average_importance": 3.71,
+        "average_map_value": 3.29,
+        "average_would_view": 3.29,
+        "user_value_rate": 57.1
+      },
+      "wildfire": {
+        "event_count": 6,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "landslide": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "aviation_accident": {
+        "event_count": 3,
+        "average_interesting": 5.0,
+        "average_importance": 4.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "explosion": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "armed_conflict": {
+        "event_count": 3,
+        "average_interesting": 5.0,
+        "average_importance": 5.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "economy": {
+        "event_count": 6,
+        "average_interesting": 2.0,
+        "average_importance": 2.0,
+        "average_map_value": 1.0,
+        "average_would_view": 1.0,
+        "user_value_rate": 0.0
+      },
+      "other": {
+        "event_count": 20,
+        "average_interesting": 2.5,
+        "average_importance": 2.25,
+        "average_map_value": 1.75,
+        "average_would_view": 1.75,
+        "user_value_rate": 25.0
+      },
+      "flood": {
+        "event_count": 6,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "storm": {
+        "event_count": 3,
+        "average_interesting": 5.0,
+        "average_importance": 4.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "maritime_accident": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 5.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "infrastructure_failure": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "crime": {
+        "event_count": 6,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "volcanic_eruption": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 5.0,
+        "average_would_view": 5.0,
+        "user_value_rate": 100.0
+      },
+      "accident": {
+        "event_count": 12,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "sports": {
+        "event_count": 3,
+        "average_interesting": 4.0,
+        "average_importance": 3.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "politics": {
+        "event_count": 2,
+        "average_interesting": 4.0,
+        "average_importance": 4.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      },
+      "general": {
+        "event_count": 58,
+        "average_interesting": 4.0,
+        "average_importance": 3.0,
+        "average_map_value": 4.0,
+        "average_would_view": 4.0,
+        "user_value_rate": 100.0
+      }
+    }
+  },
+  "cross_border_findings": {
+    "cross_border": {
+      "count": 84,
+      "percentage": 56.0,
+      "average_map_value": 3.46,
+      "average_global_relevance": 3.17,
+      "average_would_view": 3.46,
+      "user_value_rate": 71.4
+    },
+    "domestic": {
+      "count": 66,
+      "percentage": 44.0,
+      "average_map_value": 4.02,
+      "average_global_relevance": 3.03,
+      "average_would_view": 4.02,
+      "user_value_rate": 100.0
+    }
+  },
+  "multi_article_findings": {
+    "multi_article": {
+      "count": 84,
+      "percentage": 56.0,
+      "average_map_value": 3.48,
+      "average_importance": 3.51,
+      "average_would_view": 3.48,
+      "average_duplicate_redundancy": 1.65,
+      "user_value_rate": 71.4
+    },
+    "single_article": {
+      "count": 66,
+      "percentage": 44.0,
+      "average_map_value": 4.0,
+      "average_importance": 3.05,
+      "average_would_view": 4.0,
+      "average_duplicate_redundancy": 1.0,
+      "user_value_rate": 100.0
+    }
+  },
+  "potential_missed_events_analysis": [
+    {
+      "event_id": 29,
+      "title": "Diplomatic Summit Scheduled to Convene in Geneva Next Month (Report #84)",
+      "classification": "sampling_duplicate"
+    },
+    {
+      "event_id": 57,
+      "title": "Diplomatic Summit Scheduled to Convene in Geneva Next Month (Report #168)",
+      "classification": "sampling_duplicate"
+    },
+    {
+      "event_id": 140,
+      "title": "Germany says Russia behind Leipzig airport drone attack",
+      "classification": "classification_issue"
+    }
+  ],
+  "anomalies": {
+    "regional_taxonomy_anomaly": "Known reporting/aggregation issue: Flat string region buckets (e.g. Europe vs Eastern Europe) used in dataset sampling table vs strict geographical hierarchy.",
+    "source_country_count_anomaly": {
+      "reported_count": 8,
+      "actual_count": 15,
+      "difference": 7,
+      "note": "Documented typo in early Phase 1 report text stating 8 countries despite listing 11 source countries across 16 media outlets."
+    }
+  }
+}

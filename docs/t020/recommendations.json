@@ -1,0 +1,76 @@
+{
+  "t021_rss_expansion_priorities": {
+    "priority_a_high": [
+      "Africa",
+      "South America",
+      "Eastern Europe"
+    ],
+    "priority_b_medium": [
+      "Middle East",
+      "Southeast Asia",
+      "South Asia"
+    ],
+    "priority_c_low": [
+      "East Asia",
+      "Western Europe"
+    ]
+  },
+  "t022_ui_ux_priorities": {
+    "high_priority": [
+      "Event cluster density handling in high-density regions",
+      "Multi-article merged event detail view (showing all merged source articles)"
+    ],
+    "medium_priority": [
+      "Region, Country, and Category filter controls on map"
+    ],
+    "low_priority": [
+      "Decorative UI animations and visual redesigns"
+    ]
+  },
+  "decision_matrix": [
+    {
+      "issue": "Regional news deficit",
+      "evidence": "Africa/South America represent only 2% of production events despite 100% User Value Rate",
+      "root_cause": "RSS Coverage Gap",
+      "priority": "High",
+      "next_milestone": "T021"
+    },
+    {
+      "issue": "Low-value routine articles",
+      "evidence": "Routine economy & opinion articles score low on map value (1.0)",
+      "root_cause": "Source/Category Selection",
+      "priority": "Medium/High",
+      "next_milestone": "T021"
+    },
+    {
+      "issue": "Cross-Border news evaluation gap",
+      "evidence": "Cross-Border User Value Rate is 71.4% vs Domestic 100.0%",
+      "root_cause": "Abstract geopolitical reporting redundancy",
+      "priority": "Medium",
+      "next_milestone": "T021/T022"
+    },
+    {
+      "issue": "Multi-Article event redundancy",
+      "evidence": "Multi-Article events have higher importance (3.51) but higher duplicate score (1.61)",
+      "root_cause": "Event display presentation",
+      "priority": "Medium",
+      "next_milestone": "T022"
+    },
+    {
+      "issue": "High-value event omission",
+      "evidence": "3 events identified as potential missed valuable items",
+      "root_cause": "Geocoding resolution / sampling duplicate",
+      "priority": "High",
+      "next_milestone": "T021/T022"
+    },
+    {
+      "issue": "Map location display accuracy",
+      "evidence": "0 Critical Location Errors, 126/126 resolved locations correct",
+      "root_cause": "Existing geocoder logic working clean",
+      "priority": "Low",
+      "next_milestone": "T022"
+    }
+  ],
+  "recommended_next_milestone": "T021 Global RSS Coverage Expansion",
+  "final_verdict": "PASS"
+}

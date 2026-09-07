@@ -317,22 +317,199 @@ def main():
     parser.add_argument("--review-path", type=str, default="docs/t013/review.json", help="Path to T013 real-world review JSON file")
     parser.add_argument("--t014-path", type=str, default="docs/t014/experiments.json", help="Path to T014 experiments JSON file")
     parser.add_argument("--t015-path", type=str, default="docs/t015/metrics.json", help="Path to T015 metrics JSON file")
-    parser.add_argument("--summary", action="store_true", help="Print quality summary metrics for Ground Truth")
-    parser.add_argument("--real-world-summary", action="store_true", help="Print real-world quality summary for T013")
-    parser.add_argument("--t014-summary", action="store_true", help="Print T014 evaluation summary")
-    parser.add_argument("--t015-summary", action="store_true", help="Print T015 fresh validation summary")
-    parser.add_argument("--compare-t013-t014", action="store_true", help="Compare T013 Baseline vs T014 Candidate metrics")
-    parser.add_argument("--compare-t014-t015", action="store_true", help="Compare T014 Candidate vs T015 Validation metrics")
-    parser.add_argument("--monitoring-summary", action="store_true", help="Print monitoring summary")
-    parser.add_argument("--monitoring-review", action="store_true", help="Generate monitoring human review dataset")
-    parser.add_argument("--events", action="store_true", help="Show all event classification details")
-    parser.add_argument("--false-positive", action="store_true", help="Show false positive items")
-    parser.add_argument("--unresolved", action="store_true", help="Show unresolved location items")
-    parser.add_argument("--duplicates", action="store_true", help="Show duplicate merge evaluation")
-    parser.add_argument("--countries", action="store_true", help="Show country accuracy details")
-    parser.add_argument("--categories", action="store_true", help="Show category distribution")
+    parser.add_argument("--t020-sample", action="store_true", help="Generate T020 Stratified Review Dataset (dataset.json, review.csv)")
+    parser.add_argument("--t020-sampling-summary", action="store_true", help="Display T020 Sampling Summary Report")
+    parser.add_argument("--t020-review-status", action="store_true", help="Display T020 Human Review Status")
+    parser.add_argument("--t020-summary", action="store_true", help="Display T020 Evaluation Summary")
+    parser.add_argument("--t020-regions", action="store_true", help="Display T020 Regional Breakdown Analysis")
+    parser.add_argument("--t020-countries", action="store_true", help="Display T020 Country Breakdown Analysis")
+    parser.add_argument("--t020-sources", action="store_true", help="Display T020 Source Breakdown Analysis")
+    parser.add_argument("--t020-categories", action="store_true", help="Display T020 Category Breakdown Analysis")
+    parser.add_argument("--t020-cross-border", action="store_true", help="Display T020 Cross-Border News Analysis")
+    parser.add_argument("--t020-multi-article", action="store_true", help="Display T020 Multi-Article News Analysis")
+    parser.add_argument("--t020-location", action="store_true", help="Display T020 Location Accuracy Analysis")
+    parser.add_argument("--t020-report", action="store_true", help="Generate T020 Evaluation JSON & MD Reports")
+    parser.add_argument("--t020-synthesis", action="store_true", help="Display T020 Quality & Coverage Synthesis")
+    parser.add_argument("--t020-recommendations", action="store_true", help="Display T020 Recommendations & Next Milestone Matrix")
+    parser.add_argument("--t020-phase4-report", action="store_true", help="Generate T020 Phase 4 Reports (synthesis & recommendations)")
+    parser.add_argument("--seed", type=int, default=20260905, help="Random seed for T020 stratified sampling (default: 20260905)")
 
     args = parser.parse_args()
+
+    t020_eval_flags = [
+        args.t020_review_status, args.t020_summary, args.t020_regions,
+        args.t020_countries, args.t020_sources, args.t020_categories,
+        args.t020_cross_border, args.t020_multi_article, args.t020_location, args.t020_report,
+        args.t020_synthesis, args.t020_recommendations, args.t020_phase4_report
+    ]
+
+    if any(t020_eval_flags):
+        from world_news.quality_evaluator import T020Evaluator
+        evaluator = T020Evaluator()
+
+        if args.t020_phase4_report:
+            sj, sm, rj, rm = evaluator.generate_phase4_reports()
+            print(f"\nGenerated T020 Phase 4 Reports:")
+            print(f"  - {sj}")
+            print(f"  - {sm}")
+            print(f"  - {rj}")
+            print(f"  - {rm}\n")
+            return
+
+        if args.t020_synthesis:
+            synth = evaluator.compute_synthesis()
+            print("\nT020 Quality & Coverage Synthesis")
+            print("=================================")
+            print(f"Content Quality Problem : {'Yes' if synth['problem_separation']['content_quality_problem'] else 'No'}")
+            print(f"Coverage Problem        : {'Yes' if synth['problem_separation']['coverage_problem'] else 'No'}")
+            print(f"\nDetails:\n  {synth['problem_separation']['details']}\n")
+            print(f"High Volume Regions     : {', '.join(synth['regional_coverage_analysis']['high_volume_regions'])}")
+            print(f"Under-represented High Value Regions: {', '.join(synth['regional_coverage_analysis']['under_represented_high_value_regions'])}\n")
+            return
+
+        if args.t020_recommendations:
+            recs = evaluator.compute_recommendations()
+            print("\nT020 Recommendations & Next Milestone Decision")
+            print("==============================================")
+            prio = recs["t021_rss_expansion_priorities"]
+            print(f"T021 Priority A (High)   : {', '.join(prio['priority_a_high'])}")
+            print(f"T021 Priority B (Medium) : {', '.join(prio['priority_b_medium'])}")
+            print(f"T021 Priority C (Low)    : {', '.join(prio['priority_c_low'])}\n")
+            print(f"Recommended Next Milestone: {recs['recommended_next_milestone']}")
+            print(f"Final Verdict             : {recs['final_verdict']}\n")
+            return
+
+        if args.t020_review_status:
+            st = evaluator.get_review_status()
+            print("\nT020 Human Review Status")
+            print("========================")
+            print(f"\nTotal Events:       {st['total_events']}")
+            print(f"Reviewed:           {st['reviewed']}")
+            print(f"Remaining:          {st['remaining']}")
+            print(f"Completion:         {st['completion_rate']:.1f}%")
+            print(f"\nInvalid Reviews:     {st['invalid_reviews']}")
+            print(f"Critical Errors:     {st['critical_errors']}\n")
+            return
+
+        if args.t020_report:
+            jpath, mpath = evaluator.generate_evaluation_reports()
+            print(f"\nGenerated T020 Evaluation Reports:")
+            print(f"  - {jpath}")
+            print(f"  - {mpath}\n")
+
+        summary = evaluator.compute_summary_metrics()
+
+        if args.t020_summary or args.t020_report:
+            print("\nT020 News Value Evaluation Summary")
+            print("==================================")
+            print(f"Review Count: {summary['review_count']}")
+            print("\nAverage Scores (1-5):")
+            for k, v in summary["average_scores"].items():
+                print(f"  {k:22s}: {v}")
+            print("\nRates:")
+            print(f"  Map User Value Rate   : {summary['rates']['map_user_value_rate']}%")
+            print(f"  High Value Rate       : {summary['rates']['high_value_rate']}%")
+            print(f"  Low Value Rate        : {summary['rates']['low_value_rate']}%")
+            print(f"\nLocation Accuracy:")
+            for k, v in summary["location"].items():
+                print(f"  {k:22s}: {v}")
+            print(f"\nCritical Errors         : {summary['critical_errors']}")
+            print(f"Potential Missed Events : {summary['potential_missed_valuable_count']}")
+            print(f"Map Noise Candidates    : {summary['map_noise_candidates_count']}")
+            print(f"\nVERDICT                 : {summary['verdict']}\n")
+            if not any([args.t020_regions, args.t020_countries, args.t020_sources, args.t020_categories, args.t020_cross_border, args.t020_multi_article, args.t020_location]):
+                return
+
+        if args.t020_regions:
+            regions = evaluator.compute_regional_breakdown()
+            print("\nT020 Regional Breakdown Analysis")
+            print("================================")
+            for reg, stats in sorted(regions.items(), key=lambda x: x[1]["event_count"], reverse=True):
+                print(f"[{reg}] Events: {stats['event_count']} | User Value Rate: {stats['user_value_rate']}% | Avg Map Val: {stats['average_map_value']} | Avg Would View: {stats['average_would_view']}")
+            print()
+
+        if args.t020_countries:
+            countries = evaluator.compute_country_breakdown()
+            print("\nT020 Country Breakdown Analysis")
+            print("===============================")
+            for cntry, stats in sorted(countries.items(), key=lambda x: x[1]["event_count"], reverse=True):
+                sm_tag = " (small_sample = True)" if stats["small_sample"] else ""
+                print(f"[{cntry}]{sm_tag} Events: {stats['event_count']} | User Value Rate: {stats['user_value_rate']}% | Avg Would View: {stats['average_would_view']}")
+            print()
+
+        if args.t020_sources:
+            sources = evaluator.compute_source_breakdown()
+            print("\nT020 Source Breakdown Analysis")
+            print("==============================")
+            for sname, stats in sorted(sources.items(), key=lambda x: x[1]["event_count"], reverse=True):
+                ins_tag = " (insufficient_sample = True)" if stats["insufficient_sample"] else ""
+                print(f"[{sname}]{ins_tag} Events: {stats['event_count']} | User Value Rate: {stats['user_value_rate']}% | Avg Would View: {stats['average_would_view']}")
+            print()
+
+        if args.t020_categories:
+            categories = evaluator.compute_category_breakdown()
+            print("\nT020 Category Breakdown Analysis")
+            print("================================")
+            for cat, stats in sorted(categories.items(), key=lambda x: x[1]["event_count"], reverse=True):
+                print(f"[{cat}] Events: {stats['event_count']} | User Value Rate: {stats['user_value_rate']}% | Avg Map Val: {stats['average_map_value']} | Avg Would View: {stats['average_would_view']}")
+            print()
+
+        if args.t020_cross_border:
+            cb = evaluator.compute_cross_border_analysis()
+            print("\nT020 Cross-Border News Analysis")
+            print("===============================")
+            print(f"Cross-Border : Count={cb['cross_border']['count']} ({cb['cross_border']['percentage']}%) | User Value Rate={cb['cross_border']['user_value_rate']}% | Avg Map Val={cb['cross_border']['average_map_value']}")
+            print(f"Domestic     : Count={cb['domestic']['count']} ({cb['domestic']['percentage']}%) | User Value Rate={cb['domestic']['user_value_rate']}% | Avg Map Val={cb['domestic']['average_map_value']}\n")
+
+        if args.t020_multi_article:
+            ma = evaluator.compute_multi_article_analysis()
+            print("\nT020 Multi-Article News Analysis")
+            print("================================")
+            print(f"Multi-Article  : Count={ma['multi_article']['count']} ({ma['multi_article']['percentage']}%) | User Value Rate={ma['multi_article']['user_value_rate']}% | Avg Importance={ma['multi_article']['average_importance']}")
+            print(f"Single-Article : Count={ma['single_article']['count']} ({ma['single_article']['percentage']}%) | User Value Rate={ma['single_article']['user_value_rate']}% | Avg Importance={ma['single_article']['average_importance']}\n")
+
+        if args.t020_location:
+            loc = summary["location"]
+            print("\nT020 Location Accuracy Breakdown")
+            print("================================")
+            for k, v in loc.items():
+                print(f"  {k:22s}: {v}")
+            print(f"Critical Errors: {summary['critical_errors']}\n")
+
+        return
+
+    if args.t020_sample or args.t020_sampling_summary:
+        from world_news.quality_sampler import T020StratifiedSampler
+        sampler = T020StratifiedSampler(seed=args.seed)
+
+        if args.t020_sample:
+            sampler.generate_review_dataset_files(output_dir="docs/t020", target_sample_size=150)
+
+        population = sampler.get_population()
+        sampled = sampler.sample(target_sample_size=150)
+
+        regions = set(e["region"] for e in sampled)
+        countries = set(e["event_country"] for e in sampled)
+        sources = set(s for e in sampled for s in e["source_names"])
+        categories = set(e["category"] for e in sampled)
+        cross_border = sum(1 for e in sampled if e["sampling_strata"]["cross_border"])
+        multi_article = sum(1 for e in sampled if e["article_count"] > 1)
+        total_articles = sum(e["article_count"] for e in sampled)
+
+        print("\nT020 Sampling Summary")
+        print("=====================")
+        print(f"Population\n  Events: {len(population)}\n  Articles: 3640 (Production Delivered)")
+        print(f"\nSample\n  Events: {len(sampled)}\n  Articles: {total_articles}")
+        print(f"Regions: {len(regions)}")
+        print(f"Countries: {len(countries)}")
+        print(f"Sources: {len(sources)}")
+        print(f"Categories: {len(categories)}")
+        print(f"Cross-border events: {cross_border}")
+        print(f"Multi-article events: {multi_article}")
+        print(f"Seed: {args.seed}")
+        print("Production DB: READ ONLY\n")
+        return
+
 
     if args.compare_t014_t015 or args.t015_summary:
         exp_file_t014 = Path(args.t014_path)
