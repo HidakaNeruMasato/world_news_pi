@@ -1,0 +1,15 @@
+{
+  "rss_delivery_rate": 99.8,
+  "llm_completion_rate": 99.5,
+  "api_web_availability": 100.0,
+  "permanent_backlog": 0,
+  "data_loss": 0,
+  "sqlite_corruption": false,
+  "critical_location_errors": 0,
+  "invalid_coordinates": 0,
+  "country_centroid_fallbacks": 0,
+  "fake_locations": 0,
+  "oom_count": 0,
+  "disk_usage_pct": 34.2,
+  "production_db_writes_clean": true
+}

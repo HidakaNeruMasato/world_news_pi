@@ -1,0 +1,60 @@
+{
+  "regional_coverage": {
+    "Africa": {
+      "before_sources": 1,
+      "after_sources": 4,
+      "before_events": 3,
+      "after_events": 51,
+      "delta": "+48"
+    },
+    "South America": {
+      "before_sources": 1,
+      "after_sources": 3,
+      "before_events": 3,
+      "after_events": 30,
+      "delta": "+27"
+    },
+    "Eastern Europe": {
+      "before_sources": 1,
+      "after_sources": 3,
+      "before_events": 3,
+      "after_events": 33,
+      "delta": "+30"
+    },
+    "Middle East": {
+      "before_sources": 1,
+      "after_sources": 3,
+      "before_events": 8,
+      "after_events": 44,
+      "delta": "+36"
+    },
+    "South Asia": {
+      "before_sources": 1,
+      "after_sources": 4,
+      "before_events": 5,
+      "after_events": 55,
+      "delta": "+50"
+    },
+    "Southeast Asia": {
+      "before_sources": 1,
+      "after_sources": 3,
+      "before_events": 6,
+      "after_events": 36,
+      "delta": "+30"
+    },
+    "Central America": {
+      "before_sources": 0,
+      "after_sources": 2,
+      "before_events": 2,
+      "after_events": 28,
+      "delta": "+26"
+    },
+    "Oceania": {
+      "before_sources": 0,
+      "after_sources": 2,
+      "before_events": 2,
+      "after_events": 26,
+      "delta": "+24"
+    }
+  }
+}

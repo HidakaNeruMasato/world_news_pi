@@ -1,0 +1,3 @@
+source_id,name,country,region,feed_url,polling_interval,status
+nhk_top,NHK News Top,JP,East Asia,https://www.nhk.or.jp/rss/news/cat0.xml,300,EXISTING
+bbc_world,BBC News World,GB,Europe,http://feeds.bbci.co.uk/news/world/rss.xml,300,EXISTING

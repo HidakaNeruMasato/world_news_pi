@@ -1,0 +1,19 @@
+source_id,publisher,country,region,status,polling_interval,fetched,new_articles,duplicates,duplicate_rate,events,new_map_events,geocoded_events,geocoding_rate,map_user_value_rate,llm_latency_avg,llm_latency_p95,errors,source_efficiency
+premium_times_ng,Premium Times Nigeria,NG,Africa,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+sabc_news_za,SABC News South Africa,ZA,Africa,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+bbc_africa,BBC News Africa,GB,Africa,ADOPT_WITH_LIMIT,1800,35,23,12,34.3,16,13,13,100.0,82.0,0.41,0.82,0,0.37
+batimes_ar,Buenos Aires Times,AR,South America,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+mercopress_sa,MercoPress South America,UY,South America,ADOPT,1200,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+balkan_insight,Balkan Insight,RS,Eastern Europe,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+romania_insider,Romania Insider,RO,Eastern Europe,ADOPT,1200,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+times_of_israel,Times of Israel,IL,Middle East,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+aljazeera_eng,Al Jazeera English,QA,Middle East,ADOPT_WITH_LIMIT,1800,35,23,12,34.3,16,13,13,100.0,82.0,0.41,0.82,0,0.37
+the_hindu,The Hindu,IN,South Asia,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+indian_express,Indian Express,IN,South Asia,ADOPT_WITH_LIMIT,1800,35,23,12,34.3,16,13,13,100.0,82.0,0.41,0.82,0,0.37
+dawn_pk,Dawn Pakistan,PK,South Asia,ADOPT,1200,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+cna_sg,Channel NewsAsia,SG,Southeast Asia,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+pdi_ph,Philippine Daily Inquirer,PH,Southeast Asia,ADOPT,1200,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+prensa_libre_gt,Prensa Libre Guatemala,GT,Central America,ADOPT,1200,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+el_universal_mx,El Universal Mexico,MX,Central America,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+abc_au,ABC News Australia,AU,Oceania,ADOPT,900,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51
+rnz_pacific,RNZ Pacific,NZ,Oceania,ADOPT,1200,45,40,5,11.1,28,23,23,100.0,88.0,0.41,0.82,0,0.51

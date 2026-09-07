@@ -1,0 +1,22 @@
+{
+  "sources": [
+    {
+      "source_id": "nhk_top",
+      "name": "NHK News Top",
+      "country": "JP",
+      "region": "East Asia",
+      "feed_url": "https://www.nhk.or.jp/rss/news/cat0.xml",
+      "polling_interval": 300,
+      "status": "EXISTING"
+    },
+    {
+      "source_id": "bbc_world",
+      "name": "BBC News World",
+      "country": "GB",
+      "region": "Europe",
+      "feed_url": "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "polling_interval": 300,
+      "status": "EXISTING"
+    }
+  ]
+}

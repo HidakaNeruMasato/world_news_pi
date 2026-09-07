@@ -1,0 +1,148 @@
+{
+  "sources": [
+    {
+      "source_id": "nhk_top",
+      "name": "NHK News Top",
+      "country": "JP",
+      "region": "East Asia",
+      "feed_url": "https://www.nhk.or.jp/rss/news/cat0.xml",
+      "polling_interval": 300,
+      "status": "EXISTING"
+    },
+    {
+      "source_id": "bbc_world",
+      "name": "BBC News World",
+      "country": "GB",
+      "region": "Europe",
+      "feed_url": "http://feeds.bbci.co.uk/news/world/rss.xml",
+      "polling_interval": 300,
+      "status": "EXISTING"
+    },
+    {
+      "source_id": "premium_times_ng",
+      "name": "Premium Times Nigeria",
+      "country": "NG",
+      "region": "Africa",
+      "feed_url": "https://www.premiumtimesng.com/feed",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "sabc_news_za",
+      "name": "SABC News South Africa",
+      "country": "ZA",
+      "region": "Africa",
+      "feed_url": "https://www.sabcnews.com/sabcnews/feed/",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "bbc_africa",
+      "name": "BBC News Africa",
+      "country": "GB",
+      "region": "Africa",
+      "feed_url": "http://feeds.bbci.co.uk/news/world/africa/rss.xml",
+      "polling_interval": 1800,
+      "status": "ADOPT_WITH_LIMIT"
+    },
+    {
+      "source_id": "batimes_ar",
+      "name": "Buenos Aires Times",
+      "country": "AR",
+      "region": "South America",
+      "feed_url": "https://www.batimes.com.ar/feed",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "mercopress_sa",
+      "name": "MercoPress South America",
+      "country": "UY",
+      "region": "South America",
+      "feed_url": "https://en.mercopress.com/rss/",
+      "polling_interval": 1200,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "balkan_insight",
+      "name": "Balkan Insight",
+      "country": "RS",
+      "region": "Eastern Europe",
+      "feed_url": "https://balkaninsight.com/feed/",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "romania_insider",
+      "name": "Romania Insider",
+      "country": "RO",
+      "region": "Eastern Europe",
+      "feed_url": "https://www.romania-insider.com/feed",
+      "polling_interval": 1200,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "times_of_israel",
+      "name": "Times of Israel",
+      "country": "IL",
+      "region": "Middle East",
+      "feed_url": "https://www.timesofisrael.com/feed/",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "aljazeera_eng",
+      "name": "Al Jazeera English",
+      "country": "QA",
+      "region": "Middle East",
+      "feed_url": "https://www.aljazeera.com/xml/rss/all.xml",
+      "polling_interval": 1800,
+      "status": "ADOPT_WITH_LIMIT"
+    },
+    {
+      "source_id": "the_hindu",
+      "name": "The Hindu",
+      "country": "IN",
+      "region": "South Asia",
+      "feed_url": "https://www.thehindu.com/news/feeder/default.rss",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "indian_express",
+      "name": "Indian Express",
+      "country": "IN",
+      "region": "South Asia",
+      "feed_url": "https://indianexpress.com/feed/",
+      "polling_interval": 1800,
+      "status": "ADOPT_WITH_LIMIT"
+    },
+    {
+      "source_id": "dawn_pk",
+      "name": "Dawn Pakistan",
+      "country": "PK",
+      "region": "South Asia",
+      "feed_url": "https://www.dawn.com/feeds/home",
+      "polling_interval": 1200,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "cna_sg",
+      "name": "Channel NewsAsia",
+      "country": "SG",
+      "region": "Southeast Asia",
+      "feed_url": "https://www.channelnewsasia.com/api/v1/rss-outbound-feed",
+      "polling_interval": 900,
+      "status": "ADOPT"
+    },
+    {
+      "source_id": "pdi_ph",
+      "name": "Philippine Daily Inquirer",
+      "country": "PH",
+      "region": "Southeast Asia",
+      "feed_url": "https://newsinfo.inquirer.net/feed",
+      "polling_interval": 1200,
+      "status": "ADOPT"
+    }
+  ]
+}

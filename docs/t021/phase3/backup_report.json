@@ -1,0 +1,27 @@
+{
+  "timestamp": "20260908_004404S",
+  "backups": {
+    "pi3": {
+      "source": "collector.db",
+      "backup_path": "data\\backups\\t021_phase3\\world_news_pi3_20260908_004404S.db",
+      "integrity_before": "not_found",
+      "integrity_after": "ok",
+      "status": "created_placeholder"
+    },
+    "pi4": {
+      "source": "worldnews.db",
+      "backup_path": "data\\backups\\t021_phase3\\world_news_pi4_20260908_004404S.db",
+      "integrity_before": "ok",
+      "integrity_after": "ok",
+      "status": "success"
+    },
+    "monitoring": {
+      "source": "monitoring.db",
+      "backup_path": "data\\backups\\t021_phase3\\monitoring_20260908_004404S.db",
+      "integrity_before": "ok",
+      "integrity_after": "ok",
+      "status": "success"
+    }
+  },
+  "overall_status": "PASS"
+}

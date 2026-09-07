@@ -1372,4 +1372,6 @@ class T021InventoryManager:
 
 
 from world_news.t021_sandbox import T021Phase2Evaluator, T021SandboxRunner
+from world_news.t021_production import T021Phase3Manager, BackupManager
+
 

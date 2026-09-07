@@ -341,9 +341,86 @@ def main():
     parser.add_argument("--t021-phase2-coverage", action="store_true", help="Display T021 Phase 2 Regional Coverage Gain")
     parser.add_argument("--t021-phase2-quality", action="store_true", help="Display T021 Phase 2 Quality Review & Map User Value")
     parser.add_argument("--t021-phase2-report", action="store_true", help="Generate T021 Phase 2 Sandbox Pilot Reports")
+    parser.add_argument("--t021-phase3-status", action="store_true", help="Display T021 Phase 3 Production Expansion Status")
+    parser.add_argument("--t021-phase3-metrics", action="store_true", help="Display T021 Phase 3 Production Source Metrics & Efficiency")
+    parser.add_argument("--t021-phase3-coverage", action="store_true", help="Display T021 Phase 3 Production Coverage Before/After")
+    parser.add_argument("--t021-phase3-sources", action="store_true", help="List Expanded Production RSS Sources")
+    parser.add_argument("--t021-phase3-quality", action="store_true", help="Display T021 Phase 3 Production Quality Review")
+    parser.add_argument("--t021-phase3-report", action="store_true", help="Generate T021 Phase 3 Production Rollout Reports")
+    parser.add_argument("--t021-phase3-rollback-check", action="store_true", help="Perform T021 Phase 3 Rollback Integrity Validation")
     parser.add_argument("--seed", type=int, default=20260905, help="Random seed for T020 stratified sampling (default: 20260905)")
 
     args = parser.parse_args()
+
+    t021_p3_flags = [
+        args.t021_phase3_status, args.t021_phase3_metrics, args.t021_phase3_coverage,
+        args.t021_phase3_sources, args.t021_phase3_quality, args.t021_phase3_report,
+        args.t021_phase3_rollback_check
+    ]
+    if any(t021_p3_flags):
+        from world_news.quality_evaluator import T021Phase3Manager
+        mgr = T021Phase3Manager()
+
+        if args.t021_phase3_report:
+            files = mgr.generate_phase3_reports()
+            print("\nGenerated T021 Phase 3 Production Rollout Reports:")
+            for f in files:
+                print(f"  - {f}")
+            print()
+
+        if args.t021_phase3_status or args.t021_phase3_report:
+            st = mgr.get_status()
+            print("\nT021 Phase 3 Production RSS Expansion Status")
+            print("============================================")
+            print(f"Phase                   : {st['phase']}")
+            print(f"Active Stage            : {st['active_stage']}")
+            print(f"Baseline Sources        : {st['baseline_sources']}")
+            print(f"Stage A Sources (Prio A): {st['stage_a_sources']}")
+            print(f"Stage B Sources (Prio B): {st['stage_b_sources']}")
+            print(f"Stage C Sources (Prio C): {st['stage_c_sources']}")
+            print(f"Total Expanded Sources  : {st['total_expanded_sources']}")
+            print(f"Rollback Ready          : {st['rollback_ready']}\n")
+            if not any([args.t021_phase3_metrics, args.t021_phase3_coverage, args.t021_phase3_sources, args.t021_phase3_quality, args.t021_phase3_rollback_check]):
+                return
+
+        if args.t021_phase3_metrics:
+            metrics = mgr.compute_production_metrics()
+            print("\nT021 Phase 3 Production Source Metrics & Efficiency")
+            print("===================================================")
+            for m in metrics:
+                print(f"[{m['source_id']:20s}] {m['region']:15s} | Fetched: {m['fetched']:2d} | NewMap: {m['new_map_events']:2d} | Efficiency: {m['source_efficiency']} | Status: {m['status']}")
+            print()
+
+        if args.t021_phase3_coverage:
+            cov = mgr.compute_coverage_before_after()
+            print("\nT021 Phase 3 Production Regional Coverage Before/After")
+            print("=====================================================")
+            for reg, d in cov["regional_coverage"].items():
+                print(f"[{reg:15s}] Sources: {d['before_sources']} -> {d['after_sources']} | Events: {d['before_events']:2d} -> {d['after_events']:2d} ({d['delta']})")
+            print()
+
+        if args.t021_phase3_quality:
+            qual = mgr.compute_quality_review()
+            print("\nT021 Phase 3 Production Quality Review")
+            print("======================================")
+            print(f"Reviewed Sample          : {qual['total_reviewed']} Events")
+            print(f"Map User Value Rate      : {qual['map_user_value_rate']}% (Target Threshold: {qual['target_threshold']}%)")
+            print(f"Critical Location Errors : {qual['critical_location_errors']}")
+            print(f"Verdict                  : {qual['verdict']}\n")
+
+        if args.t021_phase3_rollback_check:
+            rb = mgr.run_rollback_check()
+            print("\nT021 Phase 3 Rollback Integrity Check")
+            print("=====================================")
+            print(f"Stage C Rollback        : {rb['stage_c_rollback']['status']}")
+            print(f"Stage B Rollback        : {rb['stage_b_rollback']['status']}")
+            print(f"Stage A Rollback        : {rb['stage_a_rollback']['status']}")
+            print(f"DB Integrity            : {rb['db_integrity']}")
+            print(f"Data Loss               : {rb['data_loss']}")
+            print(f"Rollback Verdict        : {rb['rollback_test_verdict']}\n")
+
+        return
+
 
     t021_p2_flags = [
         args.t021_phase2_status, args.t021_phase2_metrics, args.t021_phase2_coverage,

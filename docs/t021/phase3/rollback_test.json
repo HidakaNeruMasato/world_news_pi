@@ -1,0 +1,17 @@
+{
+  "stage_c_rollback": {
+    "status": "SUCCESS",
+    "reverted_sources": 4
+  },
+  "stage_b_rollback": {
+    "status": "SUCCESS",
+    "reverted_sources": 7
+  },
+  "stage_a_rollback": {
+    "status": "SUCCESS",
+    "reverted_sources": 7
+  },
+  "db_integrity": "ok",
+  "data_loss": 0,
+  "rollback_test_verdict": "PASS"
+}
