@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import { ActiveEvent } from '../types/event';
 import { calculateMarkerOpacity } from '../utils/time';
@@ -41,7 +41,8 @@ export const MapView: React.FC<MapViewProps> = ({
 }) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<L.Map | null>(null);
-  const markersRef = useRef<Record<number, L.CircleMarker>>({});
+  const markersRef = useRef<Record<string, L.Layer>>({});
+  const [zoomLevel, setZoomLevel] = useState<number>(2.5);
 
   // Leaflet Map 初期化
   useEffect(() => {
@@ -55,11 +56,15 @@ export const MapView: React.FC<MapViewProps> = ({
       maxZoom: 18,
     });
 
-    // OpenStreetMap タイルレイヤー + Attribution (要件 33 遵守)
+    // OpenStreetMap タイルレイヤー + Attribution
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19,
     }).addTo(map);
+
+    map.on('zoomend', () => {
+      setZoomLevel(map.getZoom());
+    });
 
     mapRef.current = map;
 
@@ -69,72 +74,115 @@ export const MapView: React.FC<MapViewProps> = ({
     };
   }, []);
 
-  // Reset World View リセット操作
+  // Reset World View 操作
   useEffect(() => {
     if (mapRef.current && resetViewTrigger > 0) {
       mapRef.current.flyTo([20.0, 0.0], 2.5, { duration: 1.2 });
     }
   }, [resetViewTrigger]);
 
-  // マーカー描画 & 更新
+  // マーカー & クラスター描画
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    const currentMarkers = markersRef.current;
-    const activeIds = new Set(events.map((e) => e.id));
+    // 既存レイヤーのクリーンアップ
+    Object.values(markersRef.current).forEach((layer) => layer.remove());
+    markersRef.current = {};
 
-    // 消失したマーカーの削除
-    Object.keys(currentMarkers).forEach((idStr) => {
-      const id = Number(idStr);
-      if (!activeIds.has(id)) {
-        currentMarkers[id].remove();
-        delete currentMarkers[id];
-      }
-    });
+    const isClusteredView = zoomLevel <= 4 && events.length > 15;
 
-    // 各イベントに対するマーカー作成/更新
-    events.forEach((evt) => {
-      const isSelected = selectedEvent?.id === evt.id;
-      const catColor = CATEGORY_COLORS[evt.category.toLowerCase()] || CATEGORY_COLORS.other;
-      const opacity = calculateMarkerOpacity(evt.last_seen_at, evt.expires_at);
+    if (isClusteredView) {
+      // 空間グリッドクラスター化 (ズームレベル 2-4)
+      const gridSize = zoomLevel <= 3 ? 12 : 8; // グリッド角度
+      const clusters: Record<string, { events: ActiveEvent[]; lat: number; lon: number }> = {};
 
-      if (currentMarkers[evt.id]) {
-        // 既存マーカーの位置・スタイル更新
-        const marker = currentMarkers[evt.id];
-        marker.setLatLng([evt.latitude, evt.longitude]);
-        marker.setStyle({
-          fillColor: catColor,
-          color: isSelected ? '#ffffff' : '#000000',
-          weight: isSelected ? 3 : 1.5,
-          radius: isSelected ? 12 : 8,
-          fillOpacity: isSelected ? 1.0 : opacity,
-          opacity: isSelected ? 1.0 : opacity,
-        });
-      } else {
-        // 新規 CircleMarker 作成
+      events.forEach((evt) => {
+        if (evt.latitude == null || evt.longitude == null) return;
+        const gridKey = `${Math.floor(evt.latitude / gridSize)}_${Math.floor(evt.longitude / gridSize)}`;
+        if (!clusters[gridKey]) {
+          clusters[gridKey] = { events: [], lat: 0, lon: 0 };
+        }
+        clusters[gridKey].events.push(evt);
+        clusters[gridKey].lat += evt.latitude;
+        clusters[gridKey].lon += evt.longitude;
+      });
+
+      Object.entries(clusters).forEach(([key, group]) => {
+        const count = group.events.length;
+        const avgLat = group.lat / count;
+        const avgLon = group.lon / count;
+
+        if (count === 1) {
+          // 単一イベントは個別マーカー
+          const evt = group.events[0];
+          const isSelected = selectedEvent?.id === evt.id;
+          const catColor = CATEGORY_COLORS[evt.category.toLowerCase()] || CATEGORY_COLORS.other;
+          const opacity = calculateMarkerOpacity(evt.last_seen_at, evt.expires_at);
+
+          const marker = L.circleMarker([evt.latitude, evt.longitude], {
+            radius: isSelected ? 12 : 8,
+            fillColor: catColor,
+            color: isSelected ? '#ffffff' : '#000000',
+            weight: isSelected ? 3 : 1.5,
+            opacity: isSelected ? 1.0 : opacity,
+            fillOpacity: isSelected ? 1.0 : opacity,
+          }).addTo(map);
+
+          marker.on('click', () => onSelectEvent(evt));
+          markersRef.current[`evt_${evt.id}`] = marker;
+        } else {
+          // クラスターバッジ作成 (ズーム 2-4)
+          const clusterIcon = L.divIcon({
+            html: `<div class="w-11 h-11 rounded-full bg-sky-600/90 border-2 border-white text-white font-bold text-xs flex items-center justify-center shadow-lg hover:scale-110 transition cursor-pointer">${count}</div>`,
+            className: 'custom-cluster-marker',
+            iconSize: [44, 44],
+            iconAnchor: [22, 22],
+          });
+
+          const clusterMarker = L.marker([avgLat, avgLon], { icon: clusterIcon }).addTo(map);
+
+          clusterMarker.on('click', () => {
+            map.flyTo([avgLat, avgLon], Math.max(map.getZoom() + 2.5, 5), { duration: 0.8 });
+          });
+
+          markersRef.current[`cluster_${key}`] = clusterMarker;
+        }
+      });
+    } else {
+      // 個別マーカー表示 (ズームレベル 5+)
+      events.forEach((evt) => {
+        if (evt.latitude == null || evt.longitude == null) return;
+        const isSelected = selectedEvent?.id === evt.id;
+        const catColor = CATEGORY_COLORS[evt.category.toLowerCase()] || CATEGORY_COLORS.other;
+        const opacity = calculateMarkerOpacity(evt.last_seen_at, evt.expires_at);
+
         const marker = L.circleMarker([evt.latitude, evt.longitude], {
-          radius: isSelected ? 12 : 8,
+          radius: isSelected ? 13 : 8,
           fillColor: catColor,
           color: isSelected ? '#ffffff' : '#000000',
-          weight: isSelected ? 3 : 1.5,
-          opacity: opacity,
-          fillOpacity: opacity,
+          weight: isSelected ? 3.5 : 1.5,
+          opacity: isSelected ? 1.0 : opacity,
+          fillOpacity: isSelected ? 1.0 : opacity,
         }).addTo(map);
+
+        if (isSelected) {
+          marker.bringToFront();
+        }
 
         marker.on('click', () => {
           onSelectEvent(evt);
         });
 
-        currentMarkers[evt.id] = marker;
-      }
-    });
-  }, [events, selectedEvent, onSelectEvent]);
+        markersRef.current[`evt_${evt.id}`] = marker;
+      });
+    }
+  }, [events, selectedEvent, onSelectEvent, zoomLevel]);
 
-  // 選択されたマーカーへのフォーカス移動
+  // 選択イベントへのフォーカス移動
   useEffect(() => {
-    if (mapRef.current && selectedEvent) {
-      mapRef.current.flyTo([selectedEvent.latitude, selectedEvent.longitude], 7, {
+    if (mapRef.current && selectedEvent && selectedEvent.latitude != null && selectedEvent.longitude != null) {
+      mapRef.current.flyTo([selectedEvent.latitude, selectedEvent.longitude], Math.max(mapRef.current.getZoom(), 7), {
         duration: 1.0,
       });
     }

@@ -39,7 +39,9 @@ export interface ActiveEvent {
   detected_at: string | null;
   last_seen_at: string | null;
   expires_at: string | null;
+  article_count?: number;
 }
+
 
 export interface ActiveEventsResponse {
   events: ActiveEvent[];
