@@ -332,9 +332,58 @@ def main():
     parser.add_argument("--t020-synthesis", action="store_true", help="Display T020 Quality & Coverage Synthesis")
     parser.add_argument("--t020-recommendations", action="store_true", help="Display T020 Recommendations & Next Milestone Matrix")
     parser.add_argument("--t020-phase4-report", action="store_true", help="Generate T020 Phase 4 Reports (synthesis & recommendations)")
+    parser.add_argument("--t021-inventory", action="store_true", help="Display T021 Global RSS Inventory Summary")
+    parser.add_argument("--t021-coverage", action="store_true", help="Display T021 Regional Coverage Gap Matrix")
+    parser.add_argument("--t021-candidates", action="store_true", help="List Recommended T021 RSS Source Candidates")
+    parser.add_argument("--t021-report", action="store_true", help="Generate T021 Inventory & Gap Analysis Reports")
     parser.add_argument("--seed", type=int, default=20260905, help="Random seed for T020 stratified sampling (default: 20260905)")
 
     args = parser.parse_args()
+
+    t021_flags = [args.t021_inventory, args.t021_coverage, args.t021_candidates, args.t021_report]
+    if any(t021_flags):
+        from world_news.quality_evaluator import T021InventoryManager
+        mgr = T021InventoryManager()
+
+        if args.t021_report:
+            files = mgr.generate_t021_reports()
+            print("\nGenerated T021 Phase 1 Inventory & Coverage Reports:")
+            for f in files:
+                print(f"  - {f}")
+            print()
+
+        if args.t021_inventory or args.t021_report:
+            summary = mgr.get_inventory_summary()
+            print("\nT021 Global RSS Source Inventory Summary")
+            print("========================================")
+            print(f"Total Candidates Examined: {summary['total_candidates']}")
+            print(f"Recommended Feeds        : {summary['recommended']}")
+            print(f"Needs Review Feeds       : {summary['needs_review']}")
+            print(f"Rejected Feeds           : {summary['rejected']}")
+            print("\nRecommended Candidates by Region:")
+            for reg, cnt in summary["recommended_by_region"].items():
+                print(f"  {reg:20s}: {cnt} feeds")
+            print()
+            if not any([args.t021_coverage, args.t021_candidates]):
+                return
+
+        if args.t021_coverage:
+            matrix = mgr.get_coverage_matrix()
+            print("\nT021 Regional Coverage Gap Matrix")
+            print("=================================")
+            for m in matrix:
+                print(f"[{m['region']:15s}] Priority: {m['priority']} | Current Events: {m['current_events']:2d} | Gap: {m['coverage_gap']:6s} | Candidate Feeds: {m['candidate_sources']}")
+            print()
+
+        if args.t021_candidates:
+            print("\nT021 Recommended RSS Source Candidates")
+            print("======================================")
+            for s in mgr.candidate_sources:
+                if s["status"] == "recommended":
+                    print(f"[{s['source_id']:20s}] {s['name']:30s} | {s['region']:15s} | Score: {s['score']}/50 | Status: {s['rss_status']}")
+            print()
+
+        return
 
     t020_eval_flags = [
         args.t020_review_status, args.t020_summary, args.t020_regions,

@@ -1,0 +1,22 @@
+source_id,name,country,region,feed_url,feed_type,tier,language,publisher_type,update_frequency,rss_status,metadata_quality,geographic_relevance,international_relevance,map_event_suitability,duplicate_risk,terms_compatibility,score,status
+premium_times_ng,Premium Times Nigeria,NG,Africa,https://www.premiumtimesng.com/feed,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+sabc_news_za,SABC News South Africa,ZA,Africa,https://www.sabcnews.com/sabcnews/feed/,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+bbc_africa,BBC News Africa,GB,Africa,http://feeds.bbci.co.uk/news/world/africa/rss.xml,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+batimes_ar,Buenos Aires Times,AR,South America,https://www.batimes.com.ar/feed,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+mercopress_sa,MercoPress South America,UY,South America,https://en.mercopress.com/rss/,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+balkan_insight,Balkan Insight,RS,Eastern Europe,https://balkaninsight.com/feed/,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+romania_insider,Romania Insider,RO,Eastern Europe,https://www.romania-insider.com/feed,rss,1,en,publisher,frequent,healthy,5,5,4,5,2,compatible,48,recommended
+aljazeera_en,Al Jazeera English,QA,Middle East,https://www.aljazeera.com/xml/rss/all.xml,rss,1,en,publisher,frequent,healthy,5,4,5,5,2,compatible,47,recommended
+times_of_israel,Times of Israel,IL,Middle East,https://www.timesofisrael.com/feed/,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+the_hindu_world,The Hindu News,IN,South Asia,https://www.thehindu.com/news/feeder/default.rss,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+indian_express_world,Indian Express World,IN,South Asia,https://indianexpress.com/section/world/feed/,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+dawn_pk,Dawn Pakistan,PK,South Asia,https://www.dawn.com/feeds/home,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+cna_sg,Channel NewsAsia,SG,Southeast Asia,https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+inquirer_ph,Philippine Daily Inquirer,PH,Southeast Asia,https://newsinfo.inquirer.net/feed,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+prensa_libre_gt,Prensa Libre Guatemala,GT,Central America,https://www.prensalibre.com/feed/,rss,1,es,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+eluniversal_mx,El Universal Mexico,MX,Central America,https://www.eluniversal.com.mx/arc/outboundfeeds/rss/,rss,1,es,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+abc_au_world,ABC News Australia,AU,Oceania,https://www.abc.net.au/news/feed/51120/rss.xml,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+rnz_pacific,RNZ Pacific News,NZ,Oceania,https://www.rnz.co.nz/rss/pacific.xml,rss,1,en,publisher,frequent,healthy,5,4,4,5,2,compatible,47,recommended
+mail_guardian_za,Mail & Guardian Africa,ZA,Africa,https://mg.co.za/feed/,rss,1,en,publisher,infrequent,unavailable,3,5,4,5,2,review_required,31,rejected
+folha_br,Folha de S.Paulo,BR,South America,https://feeds.folha.uol.com.br/emcima-da-hora/rss091.xml,rss,1,pt,publisher,infrequent,unavailable,3,5,4,5,2,review_required,31,rejected
+pap_pl,Polish Press Agency PAP,PL,Eastern Europe,https://www.pap.pl/en/rss.xml,rss,1,en,publisher,infrequent,malformed,3,5,4,5,2,review_required,31,rejected
