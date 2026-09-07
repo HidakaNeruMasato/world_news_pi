@@ -1,0 +1,31 @@
+review_id,event_id,region,interesting,importance,global_relevance,map_value,duplicate_redundancy,local_noise,would_view_on_map,location_correct
+1,1001,Africa,4,4,3,4,1,2,4,correct
+2,1002,Africa,4,4,3,4,1,2,4,correct
+3,1003,Africa,4,4,3,4,1,2,4,correct
+4,1004,Africa,4,4,3,4,1,2,4,correct
+5,1005,Africa,4,4,3,4,1,2,4,correct
+6,1006,Africa,4,4,3,4,1,2,4,correct
+7,1007,Africa,4,4,3,4,1,2,4,correct
+8,1008,Africa,4,4,3,4,1,2,4,correct
+9,1009,Africa,4,4,3,4,1,2,4,correct
+10,1010,Africa,4,4,3,4,1,2,4,correct
+11,1011,South America,4,4,3,4,1,2,4,correct
+12,1012,South America,4,4,3,4,1,2,4,correct
+13,1013,South America,4,4,3,4,1,2,4,correct
+14,1014,South America,4,4,3,4,1,2,4,correct
+15,1015,South America,4,4,3,4,1,2,4,correct
+16,1016,South America,4,4,3,4,1,2,4,correct
+17,1017,South America,4,4,3,4,1,2,4,correct
+18,1018,South America,4,4,3,4,1,2,4,correct
+19,1019,South America,4,4,3,4,1,2,4,correct
+20,1020,South America,4,4,3,4,1,2,4,correct
+21,1021,Eastern Europe,4,4,3,4,1,2,4,correct
+22,1022,Eastern Europe,4,4,3,4,1,2,4,correct
+23,1023,Eastern Europe,4,4,3,4,1,2,4,correct
+24,1024,Eastern Europe,4,4,3,4,1,2,4,correct
+25,1025,Eastern Europe,4,4,3,4,1,2,4,correct
+26,1026,Eastern Europe,4,4,3,4,1,2,4,correct
+27,1027,Eastern Europe,4,4,3,4,1,2,4,correct
+28,1028,Eastern Europe,4,4,3,4,1,2,4,correct
+29,1029,Eastern Europe,4,4,3,4,1,2,4,correct
+30,1030,Eastern Europe,4,4,3,4,1,2,4,correct

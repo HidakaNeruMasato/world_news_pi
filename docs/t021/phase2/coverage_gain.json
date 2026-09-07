@@ -1,0 +1,101 @@
+{
+  "regional_coverage_gain": {
+    "Africa": {
+      "before_events": 3,
+      "after_events": 51,
+      "delta": "+48",
+      "before_sources": 1,
+      "after_sources": 4,
+      "new_countries": [
+        "NG",
+        "ZA",
+        "KE"
+      ],
+      "new_map_events": 45
+    },
+    "South America": {
+      "before_events": 3,
+      "after_events": 30,
+      "delta": "+27",
+      "before_sources": 1,
+      "after_sources": 3,
+      "new_countries": [
+        "AR",
+        "UY"
+      ],
+      "new_map_events": 25
+    },
+    "Eastern Europe": {
+      "before_events": 3,
+      "after_events": 33,
+      "delta": "+30",
+      "before_sources": 1,
+      "after_sources": 3,
+      "new_countries": [
+        "RS",
+        "RO"
+      ],
+      "new_map_events": 28
+    },
+    "Middle East": {
+      "before_events": 8,
+      "after_events": 44,
+      "delta": "+36",
+      "before_sources": 1,
+      "after_sources": 3,
+      "new_countries": [
+        "QA",
+        "IL"
+      ],
+      "new_map_events": 32
+    },
+    "South Asia": {
+      "before_events": 5,
+      "after_events": 55,
+      "delta": "+50",
+      "before_sources": 1,
+      "after_sources": 4,
+      "new_countries": [
+        "IN",
+        "PK"
+      ],
+      "new_map_events": 44
+    },
+    "Southeast Asia": {
+      "before_events": 6,
+      "after_events": 36,
+      "delta": "+30",
+      "before_sources": 1,
+      "after_sources": 3,
+      "new_countries": [
+        "SG",
+        "PH"
+      ],
+      "new_map_events": 27
+    },
+    "Central America": {
+      "before_events": 2,
+      "after_events": 28,
+      "delta": "+26",
+      "before_sources": 0,
+      "after_sources": 2,
+      "new_countries": [
+        "GT",
+        "MX"
+      ],
+      "new_map_events": 24
+    },
+    "Oceania": {
+      "before_events": 2,
+      "after_events": 26,
+      "delta": "+24",
+      "before_sources": 0,
+      "after_sources": 2,
+      "new_countries": [
+        "AU",
+        "NZ"
+      ],
+      "new_map_events": 22
+    }
+  }
+}

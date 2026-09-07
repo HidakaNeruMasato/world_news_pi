@@ -1,0 +1,15 @@
+{
+  "sandbox_pilot": {
+    "duration_hours": 24,
+    "groups_tested": [
+      "A",
+      "B",
+      "C"
+    ],
+    "total_sources": 18,
+    "total_fetched": 705,
+    "total_new": 616,
+    "total_duplicates": 89,
+    "total_malformed": 0
+  }
+}

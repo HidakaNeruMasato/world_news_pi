@@ -336,9 +336,68 @@ def main():
     parser.add_argument("--t021-coverage", action="store_true", help="Display T021 Regional Coverage Gap Matrix")
     parser.add_argument("--t021-candidates", action="store_true", help="List Recommended T021 RSS Source Candidates")
     parser.add_argument("--t021-report", action="store_true", help="Generate T021 Inventory & Gap Analysis Reports")
+    parser.add_argument("--t021-phase2-status", action="store_true", help="Display T021 Phase 2 Sandbox Pilot Status")
+    parser.add_argument("--t021-phase2-metrics", action="store_true", help="Display T021 Phase 2 Source Metrics & Efficiency")
+    parser.add_argument("--t021-phase2-coverage", action="store_true", help="Display T021 Phase 2 Regional Coverage Gain")
+    parser.add_argument("--t021-phase2-quality", action="store_true", help="Display T021 Phase 2 Quality Review & Map User Value")
+    parser.add_argument("--t021-phase2-report", action="store_true", help="Generate T021 Phase 2 Sandbox Pilot Reports")
     parser.add_argument("--seed", type=int, default=20260905, help="Random seed for T020 stratified sampling (default: 20260905)")
 
     args = parser.parse_args()
+
+    t021_p2_flags = [
+        args.t021_phase2_status, args.t021_phase2_metrics, args.t021_phase2_coverage,
+        args.t021_phase2_quality, args.t021_phase2_report
+    ]
+    if any(t021_p2_flags):
+        from world_news.quality_evaluator import T021Phase2Evaluator
+        evaluator = T021Phase2Evaluator()
+
+        if args.t021_phase2_report:
+            files = evaluator.generate_phase2_reports()
+            print("\nGenerated T021 Phase 2 Sandbox Pilot Reports:")
+            for f in files:
+                print(f"  - {f}")
+            print()
+
+        if args.t021_phase2_status or args.t021_phase2_report:
+            st = evaluator.get_status()
+            print("\nT021 Phase 2 Sandbox Pilot Status")
+            print("=================================")
+            print(f"Sandbox DB Exists     : {st['sandbox_db_exists']}")
+            print(f"Sandbox DB Path       : {st['sandbox_db_path']}")
+            print(f"Articles Collected    : {st['articles_collected']}")
+            print(f"Events Generated      : {st['events_generated']}")
+            print(f"Pilot Status          : {st['pilot_status']}\n")
+            if not any([args.t021_phase2_metrics, args.t021_phase2_coverage, args.t021_phase2_quality]):
+                return
+
+        if args.t021_phase2_metrics:
+            metrics = evaluator.compute_source_metrics()
+            print("\nT021 Phase 2 Candidate Source Metrics & Efficiency")
+            print("==================================================")
+            for m in metrics:
+                print(f"[{m['source_id']:20s}] {m['region']:15s} | Fetched: {m['fetched_items']:3d} | Events: {m['events_generated']:2d} | NewMap/100: {m['new_map_worthy_per_100']:4.1f} | Decision: {m['decision']}")
+            print()
+
+        if args.t021_phase2_coverage:
+            cov = evaluator.compute_coverage_gain()
+            print("\nT021 Phase 2 Regional Coverage Gain")
+            print("===================================")
+            for reg, d in cov.items():
+                print(f"[{reg:15s}] Before Events: {d['before_events']:2d} -> After: {d['after_events']:2d} ({d['delta']:4s}) | New Countries: {', '.join(d['new_countries'])}")
+            print()
+
+        if args.t021_phase2_quality:
+            qual = evaluator.compute_quality_review()
+            print("\nT021 Phase 2 News Value & Quality Review")
+            print("========================================")
+            print(f"Reviewed Sample          : {qual['total_reviewed']} Events")
+            print(f"Map User Value Rate      : {qual['map_user_value_rate']}% (T020 Baseline: {qual['t020_baseline_value_rate']}%)")
+            print(f"Critical Location Errors : {qual['critical_location_errors']}")
+            print(f"Verdict                  : {qual['verdict']}\n")
+
+        return
 
     t021_flags = [args.t021_inventory, args.t021_coverage, args.t021_candidates, args.t021_report]
     if any(t021_flags):
@@ -384,6 +443,7 @@ def main():
             print()
 
         return
+
 
     t020_eval_flags = [
         args.t020_review_status, args.t020_summary, args.t020_regions,

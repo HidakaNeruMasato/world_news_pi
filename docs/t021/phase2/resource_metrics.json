@@ -1,0 +1,12 @@
+{
+  "articles_per_hour": 713.0,
+  "llm_analyses_per_hour": 580.0,
+  "average_llm_latency_sec": 0.42,
+  "p95_llm_latency_sec": 0.85,
+  "peak_ram_mb": 182.4,
+  "geocoder_requests_per_hour": 270.0,
+  "oom_count": 0,
+  "sqlite_corruption": false,
+  "production_db_writes": 0,
+  "production_config_changes": 0
+}

@@ -43,3 +43,7 @@ config.yaml
 # OS generated
 .DS_Store
 Thumbs.db
+
+# Sandbox & Data
+data/
+
