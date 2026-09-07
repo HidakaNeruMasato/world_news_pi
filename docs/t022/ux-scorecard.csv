@@ -1,0 +1,7 @@
+Area,Discoverability,Comprehension,Navigation,Density Handling,Mobile Usability,Accessibility,Error Recovery,Information Hierarchy,Overall Score,Key Problem
+Map Canvas,3,4,3,2,2,2,4,3,2.9,Dense marker overlap and lack of clustering in high-density regions.
+Event List,4,4,3,3,2,3,4,3,3.3,Fixed 320px sidebar width; lacks search bar and region filtering.
+Event Detail,4,4,3,4,2,3,4,4,3.5,Floating panel covers map markers on mobile and small desktop screens.
+Filter Bar,3,3,2,2,2,2,4,3,2.6,Missing Region filter; dropdowns do not display event count badges.
+Dashboard,4,4,3,4,3,3,4,3,3.5,Separate tab completely hides Map; mixes operational telemetry with news overview.
+Mobile Layout,2,3,2,1,2,2,3,2,2.1,Vertical stack forces scrolling; detail panel covers map canvas.

@@ -1,0 +1,58 @@
+{
+  "milestone": "T022-1",
+  "audit_target": "web/src/",
+  "components": [
+    {
+      "name": "App",
+      "path": "web/src/App.tsx",
+      "role": "Root application container and state orchestrator",
+      "state_managed": ["activeTab", "events", "selectedEvent", "loading", "isRefreshing", "isConnected", "lastUpdated", "resetViewTrigger", "selectedCategory", "selectedCountry"],
+      "api_calls": ["/api/events/active"]
+    },
+    {
+      "name": "Header",
+      "path": "web/src/components/Header.tsx",
+      "role": "Navigation bar with logo, tab selector, and control buttons",
+      "props": ["onRefresh", "onResetView", "isRefreshing", "activeTab", "onTabChange"]
+    },
+    {
+      "name": "FilterBar",
+      "path": "web/src/components/FilterBar.tsx",
+      "role": "Filtering controls for Category and Country",
+      "props": ["categories", "countries", "selectedCategory", "selectedCountry", "onCategoryChange", "onCountryChange"]
+    },
+    {
+      "name": "MapView",
+      "path": "web/src/components/MapView.tsx",
+      "role": "Leaflet map canvas displaying circle markers per active event",
+      "props": ["events", "selectedEvent", "onSelectEvent", "resetViewTrigger"],
+      "dependencies": ["leaflet", "time.ts"]
+    },
+    {
+      "name": "EventList",
+      "path": "web/src/components/EventList.tsx",
+      "role": "Sidebar list of filtered active events with relative time and confidence",
+      "props": ["events", "selectedEventId", "onSelectEvent"]
+    },
+    {
+      "name": "EventDetailPanel",
+      "path": "web/src/components/EventDetailPanel.tsx",
+      "role": "Floating detail panel showing event location, confidence, timestamps, and articles",
+      "props": ["event", "onClose"],
+      "api_calls": ["/api/events/{id}/articles"]
+    },
+    {
+      "name": "DashboardView",
+      "path": "web/src/components/DashboardView.tsx",
+      "role": "Full-screen analytics dashboard with pipeline funnel and regional breakdown",
+      "props": ["onSelectRegion"],
+      "api_calls": ["/api/dashboard/summary", "/api/dashboard/funnel", "/api/dashboard/regions", "/api/dashboard/sources", "/api/dashboard/timeseries", "/api/dashboard/source-health"]
+    },
+    {
+      "name": "StatusBar",
+      "path": "web/src/components/StatusBar.tsx",
+      "role": "Footer bar presenting status indicator and last updated timestamp",
+      "props": ["activeCount", "lastUpdated", "isConnected"]
+    }
+  ]
+}

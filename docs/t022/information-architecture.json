@@ -1,0 +1,22 @@
+{
+  "milestone": "T022-1",
+  "version": "1.0.0",
+  "primary_surface": "Map",
+  "layout_mode": "unified_overview_and_map",
+  "hierarchy": {
+    "level_1_primary": ["Map Canvas", "Selected Event Marker", "Event Title"],
+    "level_2_secondary": ["Active Event Count", "Region Filter", "Country", "Category", "Relative Occurred Time", "Confidence Score"],
+    "level_3_tertiary": ["Publisher Sources", "Article Count", "Coordinates", "System Status"],
+    "level_4_operational": ["Pipeline Telemetry", "RSS Failure Rates", "Queue Backlog", "LLM Latency"]
+  },
+  "state_synchronization": {
+    "selected_event_id": "Shared between MapView, EventList, and EventDetailPanel",
+    "map_pan_on_select": true,
+    "list_scroll_on_select": true,
+    "detail_panel_open_on_select": true
+  },
+  "filtering_taxonomy": {
+    "regions": ["Africa", "Asia", "Europe", "Middle East", "North America", "South America", "Oceania", "Central America"],
+    "hierarchical_filtering": "Region -> Country -> Category"
+  }
+}
