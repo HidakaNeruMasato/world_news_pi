@@ -57,10 +57,18 @@ export interface Article {
   title: string;
   description: string | null;
   url: string | null;
+  original_url?: string | null;
+  canonical_url?: string | null;
+  current_url?: string | null;
+  url_status?: 'unknown' | 'active' | 'redirected' | 'not_found' | 'gone' | 'temporary_unavailable' | 'blocked' | 'timeout' | 'invalid' | string;
+  url_http_status?: number | null;
+  url_last_checked_at?: string | null;
+  link_available?: boolean;
   published_at: string | null;
   fetched_at: string;
   language: string | null;
 }
+
 
 export interface EventArticlesResponse {
   articles: Article[];

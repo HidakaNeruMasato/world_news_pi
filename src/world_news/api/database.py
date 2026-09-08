@@ -200,12 +200,50 @@ class Pi4Database:
                 if col not in evt_cols:
                     cursor.execute(f"ALTER TABLE events ADD COLUMN {col} TEXT")
 
+            # 8. article_url_history (T024 記事URL変更履歴)
+
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS article_url_history (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    article_id INTEGER NOT NULL,
+                    url TEXT NOT NULL,
+                    url_type TEXT NOT NULL,
+                    http_status INTEGER,
+                    status TEXT NOT NULL,
+                    observed_at TEXT NOT NULL
+                )
+            """)
+
+            # T024 articles カラムマイグレーション
+            cursor.execute("PRAGMA table_info(articles)")
+            art_cols = [row["name"] for row in cursor.fetchall()]
+            art_cols_to_add = [
+                ("original_url", "TEXT"),
+                ("canonical_url", "TEXT"),
+                ("current_url", "TEXT"),
+                ("url_status", "TEXT NOT NULL DEFAULT 'unknown'"),
+                ("url_http_status", "INTEGER"),
+                ("url_last_checked_at", "TEXT"),
+                ("url_last_success_at", "TEXT"),
+                ("url_redirect_count", "INTEGER NOT NULL DEFAULT 0"),
+                ("url_error", "TEXT"),
+            ]
+            for col_name, col_def in art_cols_to_add:
+                if col_name not in art_cols:
+                    cursor.execute(f"ALTER TABLE articles ADD COLUMN {col_name} {col_def}")
+
+            # 既存 articles データの original_url / current_url バックフィル
+            cursor.execute("UPDATE articles SET original_url = url WHERE original_url IS NULL AND url IS NOT NULL")
+            cursor.execute("UPDATE articles SET current_url = url WHERE current_url IS NULL AND url IS NOT NULL")
+
             # インデックス
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_status ON articles(processing_status)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_pubdate ON articles(published_at)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_hash ON articles(content_hash)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_external_id ON articles(external_id)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_url ON articles(url)")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_articles_url_status ON articles(url_status)")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_article_url_history_art_id ON article_url_history(article_id)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_status ON events(status)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_expires ON events(expires_at)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_jobs_status ON processing_jobs(status)")
@@ -214,6 +252,7 @@ class Pi4Database:
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_geocoding_cache_query ON geocoding_cache(normalized_query)")
 
             conn.commit()
+
 
     def find_duplicate_article(
         self,
@@ -698,11 +737,17 @@ class Pi4Database:
             return [dict(r) for r in rows]
 
     def get_event_articles(self, event_id: int) -> List[dict]:
-        """指定したイベントに関連付けられたニュース記事一覧を取得します"""
+        """指定したイベントに関連付けられたニュース記事一覧を取得します (T024 拡張)"""
         with self._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("""
-                SELECT a.id, a.source_id, a.source_country, a.title, a.description, a.url,
+                SELECT a.id, a.source_id, a.source_country, a.title, a.description,
+                       COALESCE(a.current_url, a.url) AS url,
+                       COALESCE(a.original_url, a.url) AS original_url,
+                       a.canonical_url,
+                       COALESCE(a.current_url, a.url) AS current_url,
+                       COALESCE(a.url_status, 'unknown') AS url_status,
+                       a.url_http_status, a.url_last_checked_at,
                        a.published_at, a.fetched_at, a.language, s.name as source_name
                 FROM articles a
                 JOIN article_events ae ON a.id = ae.article_id
@@ -714,7 +759,13 @@ class Pi4Database:
             if not rows:
                 # 予備: articles.event_id での直接照合
                 cursor.execute("""
-                    SELECT a.id, a.source_id, a.source_country, a.title, a.description, a.url,
+                    SELECT a.id, a.source_id, a.source_country, a.title, a.description,
+                           COALESCE(a.current_url, a.url) AS url,
+                           COALESCE(a.original_url, a.url) AS original_url,
+                           a.canonical_url,
+                           COALESCE(a.current_url, a.url) AS current_url,
+                           COALESCE(a.url_status, 'unknown') AS url_status,
+                           a.url_http_status, a.url_last_checked_at,
                            a.published_at, a.fetched_at, a.language, s.name as source_name
                     FROM articles a
                     LEFT JOIN sources s ON a.source_id = s.id
@@ -723,7 +774,89 @@ class Pi4Database:
                 """, (event_id,))
                 rows = cursor.fetchall()
 
-            return [dict(r) for r in rows]
+            results = []
+            for r in rows:
+                d = dict(r)
+                status = d.get('url_status', 'unknown')
+                d['link_available'] = status in ('active', 'redirected', 'unknown')
+                results.append(d)
+            return results
+
+    def update_article_url_status(
+        self,
+        article_id: int,
+        original_url: str,
+        current_url: str,
+        canonical_url: Optional[str],
+        status: str,
+        http_status: Optional[int] = None,
+        redirect_count: int = 0,
+        error: Optional[str] = None,
+    ):
+        """記事の URL 検証結果および変更履歴をアトミックに記録します (T024)"""
+        now_str = datetime.now(timezone.utc).isoformat()
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+
+            # 既存レコード取得
+            cursor.execute("SELECT current_url, url_status FROM articles WHERE id = ?", (article_id,))
+            old_row = cursor.fetchone()
+            old_url = old_row["current_url"] if old_row else original_url
+
+            # articles テーブル更新
+            success_clause = ", url_last_success_at = ?" if status in ('active', 'redirected') else ""
+            params = [original_url, current_url, canonical_url, status, http_status, now_str, redirect_count, error]
+            if status in ('active', 'redirected'):
+                params.append(now_str)
+            params.append(article_id)
+
+            cursor.execute(f"""
+                UPDATE articles
+                SET original_url = ?,
+                    current_url = ?,
+                    canonical_url = ?,
+                    url_status = ?,
+                    url_http_status = ?,
+                    url_last_checked_at = ?
+                    {success_clause},
+                    url_redirect_count = ?,
+                    url_error = ?,
+                    updated_at = ?
+                WHERE id = ?
+            """, (
+                original_url, current_url, canonical_url, status, http_status, now_str,
+                *( [now_str] if status in ('active', 'redirected') else [] ),
+                redirect_count, error, now_str, article_id
+            ))
+
+            # URL に変更があった場合、履歴テーブルへ記録
+            if old_url != current_url or status in ('redirected', 'not_found', 'gone'):
+                cursor.execute("""
+                    INSERT INTO article_url_history (article_id, url, url_type, http_status, status, observed_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (
+                    article_id,
+                    current_url,
+                    'redirect' if status == 'redirected' else ('canonical' if canonical_url == current_url else 'original'),
+                    http_status,
+                    status,
+                    now_str,
+                ))
+
+            conn.commit()
+
+    def get_article_url_history(self, article_id: int) -> List[dict]:
+        """指定記事の URL 状態変更履歴を取得します (T024)"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT id, article_id, url, url_type, http_status, status, observed_at
+                FROM article_url_history
+                WHERE article_id = ?
+                ORDER BY id ASC
+            """, (article_id,))
+            return [dict(r) for r in cursor.fetchall()]
+
 
     def merge_event_with_article(
         self,

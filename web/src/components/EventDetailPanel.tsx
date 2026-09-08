@@ -3,7 +3,7 @@ import { ActiveEvent, Article } from '../types/event';
 import { fetchEventArticles } from '../api/client';
 import { formatFullDateTime, formatRelativeTime } from '../utils/time';
 import { isSafeHttpUrl } from '../utils/url';
-import { X, ExternalLink, ShieldCheck, MapPin, Clock, Newspaper, ArrowLeft, Globe, AlertCircle } from 'lucide-react';
+import { X, ExternalLink, ShieldCheck, MapPin, Clock, Newspaper, ArrowLeft, Globe, AlertCircle, RefreshCw, CheckCircle2 } from 'lucide-react';
 
 interface EventDetailPanelProps {
   event: ActiveEvent | null;
@@ -31,6 +31,17 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
   const panelClasses = isMobile
     ? 'w-full h-full bg-slate-800 text-slate-100 flex flex-col overflow-hidden'
     : 'absolute top-4 bottom-4 right-4 z-[1000] w-96 max-w-[calc(100vw-2rem)] max-h-[calc(100%-2rem)] bg-slate-800/95 backdrop-blur border border-slate-700 rounded-lg shadow-2xl overflow-hidden flex flex-col';
+
+  // T024 Alternative Articles 抽出 (リンク切れ記事がある場合に他メディアの有効記事を優先案内)
+  const activeAlternativeArticles = articles.filter((a) => {
+    const status = a.url_status || 'unknown';
+    return status === 'active' || status === 'redirected' || status === 'unknown';
+  });
+
+  const hasBrokenArticles = articles.some((a) => {
+    const status = a.url_status;
+    return status === 'not_found' || status === 'gone' || status === 'invalid';
+  });
 
   return (
     <div className={panelClasses}>
@@ -121,7 +132,20 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
           </div>
         </div>
 
-        {/* 関連ニュース記事 & 記事プレビューカード (T023-1 UX-008) */}
+        {/* T024 Alternative Articles 救済バナー (一部記事がリンク切れの場合に表示) */}
+        {hasBrokenArticles && activeAlternativeArticles.length > 0 && (
+          <div className="bg-sky-950/70 p-3 rounded-lg border border-sky-500/40 text-sky-200 space-y-1.5 text-[11px]">
+            <div className="font-bold flex items-center text-sky-300">
+              <CheckCircle2 className="w-4 h-4 mr-1.5 text-emerald-400 flex-shrink-0" />
+              このイベントを報じている他のニュースソース (Alternative Articles)
+            </div>
+            <p className="text-slate-300 leading-snug">
+              一部の元記事リンクが移動・アクセス不可となっていますが、以下のメディアで継続して報道されています。
+            </p>
+          </div>
+        )}
+
+        {/* 関連ニュース記事 & 記事プレビューカード (T023-1 & T024) */}
         <div className="border-t border-slate-700/80 pt-3 space-y-2">
           <h4 className="font-semibold text-slate-200 mb-2 flex items-center justify-between">
             <span className="flex items-center text-xs">
@@ -136,8 +160,15 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
           ) : (
             <div className="space-y-3 pb-4">
               {articles.map((art) => {
-                const hasValidUrl = isSafeHttpUrl(art.url);
+                const targetUrl = art.current_url || art.url;
+                const hasValidUrl = isSafeHttpUrl(targetUrl);
                 const publishedTimeStr = art.published_at || art.fetched_at;
+                const status = art.url_status || 'unknown';
+
+                const isLinkActive = status === 'active' || status === 'redirected' || status === 'unknown';
+                const isRedirected = status === 'redirected';
+                const isNotFound = status === 'not_found' || status === 'gone';
+                const isBlockedOrTemp = status === 'blocked' || status === 'temporary_unavailable' || status === 'timeout';
 
                 return (
                   <article
@@ -169,24 +200,42 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
                       {art.title}
                     </h5>
 
-                    {/* 記事プレビュー概要 (descriptionが存在する場合表示) */}
+                    {/* 記事プレビュー概要 (URLが生存不能でも情報は保護して表示) */}
                     {art.description && (
                       <p className="text-[11px] text-slate-300 leading-relaxed bg-slate-950/50 p-2 rounded border border-slate-800/80 line-clamp-3">
                         {art.description}
                       </p>
                     )}
 
-                    {/* 明示的な元記事遷移 CTA ボタン (最低44pxのタップ領域確保) */}
-                    <div className="pt-1">
-                      {hasValidUrl ? (
-                        <a
-                          href={art.url!}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-bold text-white bg-sky-600 hover:bg-sky-500 active:bg-sky-700 rounded border border-sky-400/30 transition shadow-sm min-h-[44px]"
-                        >
-                          元記事を読む <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
-                        </a>
+                    {/* T024 URL 状態に応じた CTA ボタン & ナビゲーション */}
+                    <div className="pt-1 space-y-1">
+                      {isLinkActive && hasValidUrl ? (
+                        <>
+                          <a
+                            href={targetUrl!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-bold text-white bg-sky-600 hover:bg-sky-500 active:bg-sky-700 rounded border border-sky-400/30 transition shadow-sm min-h-[44px]"
+                          >
+                            元記事を読む <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+                          </a>
+                          {isRedirected && (
+                            <div className="text-[10px] text-sky-300/80 flex items-center justify-center font-mono">
+                              <RefreshCw className="w-3 h-3 mr-1 text-sky-400 animate-spin-once" />
+                              ※ リンク先URLが正規URLへ更新されています
+                            </div>
+                          )}
+                        </>
+                      ) : isNotFound ? (
+                        <span className="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-semibold text-rose-300/90 bg-rose-950/40 rounded border border-rose-800/50 min-h-[44px]">
+                          <AlertCircle className="w-3.5 h-3.5 mr-1.5 text-rose-400" />
+                          元記事は現在確認できません (移動または削除)
+                        </span>
+                      ) : isBlockedOrTemp ? (
+                        <span className="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-semibold text-amber-300/90 bg-amber-950/40 rounded border border-amber-800/50 min-h-[44px]">
+                          <AlertCircle className="w-3.5 h-3.5 mr-1.5 text-amber-400" />
+                          元記事を確認できません (アクセス制限・一時障害)
+                        </span>
                       ) : (
                         <span className="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-semibold text-slate-500 bg-slate-800/60 rounded border border-slate-700/50 min-h-[44px]">
                           <AlertCircle className="w-3.5 h-3.5 mr-1 text-slate-500" /> 元記事URLを取得できません

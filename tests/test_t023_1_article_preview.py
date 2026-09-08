@@ -41,7 +41,8 @@ def test_t023_1_02_event_detail_cta_and_preview_components():
     assert "元記事URLを取得できません" in content
 
     # TEST-003: isSafeHttpUrl integration
-    assert "isSafeHttpUrl(art.url)" in content
+    assert "isSafeHttpUrl(" in content
+
 
     # TEST-004: Summary/description preview rendering
     assert "art.description" in content

@@ -106,7 +106,7 @@ class Source(BaseModel):
 
 
 class Article(BaseModel):
-    """収集記事モデル"""
+    """収集記事モデル (T024 拡張)"""
     id: Optional[int] = None
     source_id: int
     source_country: Optional[str] = None
@@ -114,6 +114,13 @@ class Article(BaseModel):
     title: str
     description: Optional[str] = None
     url: Optional[str] = None
+    original_url: Optional[str] = None
+    canonical_url: Optional[str] = None
+    current_url: Optional[str] = None
+    url_status: Optional[str] = "unknown"
+    url_http_status: Optional[int] = None
+    url_last_checked_at: Optional[datetime] = None
+    link_available: Optional[bool] = True
     published_at: Optional[datetime] = None
     fetched_at: datetime = Field(default_factory=datetime.now)
     language: Optional[str] = None
@@ -123,6 +130,7 @@ class Article(BaseModel):
     event_id: Optional[int] = None
     created_at: datetime = Field(default_factory=datetime.now)
     updated_at: datetime = Field(default_factory=datetime.now)
+
 
 
 class Analysis(BaseModel):
