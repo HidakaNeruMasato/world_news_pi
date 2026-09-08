@@ -180,9 +180,10 @@ export const App: React.FC = () => {
   const handleSelectEvent = (evt: ActiveEvent) => {
     setSelectedEvent(evt);
     if (isMobile) {
-      setBottomSheetState('half');
+      setBottomSheetState('full');
     }
   };
+
 
   return (
     <div className="flex flex-col h-screen w-screen bg-slate-900 text-slate-100 overflow-hidden font-sans">

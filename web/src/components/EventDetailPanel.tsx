@@ -27,14 +27,15 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
 
   if (!event) return null;
 
+  // デスクトップでは top-4 bottom-4 でマップ領域内に厳密に収め、スクロール可能にする
   const panelClasses = isMobile
-    ? 'w-full h-full bg-slate-800 text-slate-100 flex flex-col'
-    : 'absolute top-4 right-4 z-[1000] w-96 max-w-[calc(100vw-2rem)] bg-slate-800/95 backdrop-blur border border-slate-700 rounded-lg shadow-2xl overflow-hidden flex flex-col max-h-[calc(100vh-6rem)]';
+    ? 'w-full h-full bg-slate-800 text-slate-100 flex flex-col overflow-hidden'
+    : 'absolute top-4 bottom-4 right-4 z-[1000] w-96 max-w-[calc(100vw-2rem)] max-h-[calc(100%-2rem)] bg-slate-800/95 backdrop-blur border border-slate-700 rounded-lg shadow-2xl overflow-hidden flex flex-col';
 
   return (
     <div className={panelClasses}>
-      {/* ヘッダー領域 */}
-      <div className="p-3.5 bg-slate-850 border-b border-slate-700 flex items-center justify-between">
+      {/* 固定ヘッダー領域 (flex-shrink-0) */}
+      <div className="p-3.5 bg-slate-850 border-b border-slate-700 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center space-x-2">
           {isMobile && (
             <button onClick={onClose} className="p-1 text-slate-400 hover:text-white mr-1">
@@ -58,8 +59,8 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
         </button>
       </div>
 
-      {/* メインコンテンツ */}
-      <div className="p-4 overflow-y-auto space-y-3.5 text-xs text-slate-300 flex-1">
+      {/* スクロール可能なメインコンテンツ (flex-1 min-h-0 overflow-y-auto) */}
+      <div className="p-4 overflow-y-auto space-y-3.5 text-xs text-slate-300 flex-1 min-h-0">
         {/* 位置情報ブレイクダウン */}
         <div className="bg-slate-900/60 p-3 rounded border border-slate-700/60 space-y-1.5">
           <div className="flex items-center text-slate-400 font-semibold">
@@ -133,7 +134,7 @@ export const EventDetailPanel: React.FC<EventDetailPanelProps> = ({ event, onClo
           ) : articles.length === 0 ? (
             <div className="text-slate-500 py-4 text-center text-xs">No linked articles available.</div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-3 pb-4">
               {articles.map((art) => {
                 const hasValidUrl = isSafeHttpUrl(art.url);
                 const publishedTimeStr = art.published_at || art.fetched_at;

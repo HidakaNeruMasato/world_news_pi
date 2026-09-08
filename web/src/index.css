@@ -1,8 +1,70 @@
 @import "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
 
-/* Leaflet 地図スタイルのカスタイマイズ */
+/* 暗色テーマのフォールバック CSS ルール (T023-1) */
+html, body {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: #0f172a;
+  min-height: 100vh;
+}
+
+.bg-slate-900,
+.bg-slate-900\/95,
+.bg-slate-900\/90,
+.bg-slate-900\/80,
+.bg-slate-900\/60 {
+  background-color: #0f172a !important;
+}
+
+.bg-slate-850 {
+  background-color: #162032 !important;
+}
+
+.bg-slate-800,
+.bg-slate-800\/95,
+.bg-slate-800\/90,
+.bg-slate-800\/60 {
+  background-color: #1e293b !important;
+}
+
+.bg-slate-950,
+.bg-slate-950\/80,
+.bg-slate-950\/70,
+.bg-slate-950\/50,
+.bg-slate-950\/40 {
+  background-color: #020617 !important;
+}
+
+.bg-sky-950,
+.bg-sky-950\/70 {
+  background-color: #082f49 !important;
+}
+
+.border-slate-700,
+.border-slate-700\/80,
+.border-slate-700\/60,
+.border-slate-700\/50 {
+  border-color: #334155 !important;
+}
+
+.border-slate-800 {
+  border-color: #1e293b !important;
+}
+
+.text-slate-100 { color: #f8fafc !important; }
+.text-slate-200 { color: #e2e8f0 !important; }
+.text-slate-300 { color: #cbd5e1 !important; }
+.text-slate-400 { color: #94a3b8 !important; }
+.text-slate-500 { color: #64748b !important; }
+
+/* Leaflet 地図スタイルのカスタマイズ */
 .leaflet-container {
-  background-color: #020617 !important; /* Dark Slate background */
+  background-color: #020617 !important;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
