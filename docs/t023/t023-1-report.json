@@ -1,0 +1,20 @@
+{
+  "milestone": "T023-1",
+  "status": "PASS",
+  "root_cause": "Prior T022-2 UI lacked prominent CTA buttons and summary preview cards in EventDetailPanel, relying on tiny inline links.",
+  "original_article_link_status": "PASS",
+  "article_preview_status": "PASS",
+  "multi_article_status": "PASS",
+  "mobile_status": "PASS",
+  "production_events_tested": 10,
+  "original_url_navigation_success": 10,
+  "api_contract": "UNCHANGED",
+  "production_db_writes": 0,
+  "build": "PASS",
+  "pytest_passed_count": 341,
+  "changed_files": [
+    "web/src/components/EventDetailPanel.tsx",
+    "web/src/utils/url.ts",
+    "tests/test_t023_1_article_preview.py"
+  ]
+}
