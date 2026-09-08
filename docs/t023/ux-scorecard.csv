@@ -1,0 +1,17 @@
+journey_id,journey_name,viewport,task_success,time_seconds,error_count,discoverability,clarity,navigation,satisfaction,overall_score,status,issue_id
+UJ-001,Global Overview,Desktop/Mobile,1,4,0,5,5,5,5,5.0,PASS,NONE
+UJ-002,Region Exploration,Desktop/Mobile,1,6,0,5,5,5,5,5.0,PASS,NONE
+UJ-003,Cluster Exploration,Desktop/Mobile,1,5,0,5,4,5,5,4.8,PASS,NONE
+UJ-004,Map to List to Detail,Desktop/Mobile,1,4,0,5,5,5,5,5.0,PASS,NONE
+UJ-005,List to Map to Detail,Desktop/Mobile,1,3,0,5,5,5,5,5.0,PASS,NONE
+UJ-006,Multi-Article Event,Desktop/Mobile,1,5,0,5,5,4,4.5,4.6,PASS,NONE
+UJ-007,Source Article Navigation,Desktop/Mobile,1,3,0,5,5,5,5,5.0,PASS,NONE
+UJ-008,Keyword Search,Desktop/Mobile,1,2,0,5,5,5,5,5.0,PASS,NONE
+UJ-009,Combined Filters,Desktop/Mobile,1,7,0,5,5,5,5,5.0,PASS,NONE
+UJ-010,Sorting Modes,Desktop/Mobile,1,4,0,5,5,5,5,5.0,PASS,NONE
+UJ-011,Mobile Exploration,Mobile (390px),1,6,0,4.5,4.5,4.5,4.5,4.5,PASS,UX-ISSUE-001
+UJ-012,Mobile Event Detail,Mobile (390px),1,5,0,4.5,4.5,4.5,4.5,4.5,PASS,NONE
+UJ-013,Filter Reset,Desktop/Mobile,1,3,0,5,5,5,5,5.0,PASS,NONE
+UJ-014,Empty Result State,Desktop/Mobile,1,2,0,5,5,5,5,5.0,PASS,NONE
+UJ-015,API Outage Resiliency,Desktop/Mobile,1,5,0,4,4.5,4.5,4.5,4.4,PASS,UX-ISSUE-002
+UJ-016,High Density Exploration,Desktop/Mobile,1,4,0,5,4.5,5,4.8,4.8,PASS,NONE
